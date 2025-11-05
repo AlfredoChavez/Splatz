@@ -30,3 +30,6 @@ node_modules
 # Custom
 private
 dist
+
+# Gaussian Splat models
+/client/public/splat_models/*
