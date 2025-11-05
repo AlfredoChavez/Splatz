@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-three/fiber": "^9.4.0",
+    "@sparkjsdev/spark": "^0.1.10",
     "@tailwindcss/vite": "^4.1.16",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -17,7 +19,8 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "tailwind-merge": "^3.3.1",
-    "tailwindcss": "^4.1.16"
+    "tailwindcss": "^4.1.16",
+    "three": "^0.181.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
