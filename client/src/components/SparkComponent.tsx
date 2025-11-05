@@ -6,7 +6,7 @@ import {SplatMesh, FpsMovement, PointerControls} from '@sparkjsdev/spark';
 //* TS forces me to create an interface to indicate which type of prop i am consuming
 interface splatUrlProp {
   splatURL : string;
-}
+};
 
 function SplatScene ({splatURL}: splatUrlProp) {
   const splatRef = useRef(null);
