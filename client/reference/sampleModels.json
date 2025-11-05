@@ -1,0 +1,142 @@
+{
+  "arrow.glb": {
+    "url": "https://sparkjs.dev/assets/models/arrow.glb",
+    "directory": "models"
+  },
+  "branzino-amarin.spz": {
+    "url": "https://sparkjs.dev/assets/splats/food/branzino-amarin.spz",
+    "directory": "splats/food"
+  },
+  "burger-from-amboy.spz": {
+    "url": "https://sparkjs.dev/assets/splats/food/burger-from-amboy.spz",
+    "directory": "splats/food"
+  },
+  "butterfly.png": {
+    "url": "https://sparkjs.dev/assets/images/butterfly.png",
+    "directory": "images"
+  },
+  "butterfly.spz": {
+    "url": "https://sparkjs.dev/assets/splats/butterfly.spz",
+    "directory": "splats"
+  },
+  "butterfly-ai.spz": {
+    "url": "https://sparkjs.dev/assets/splats/butterfly-ai.spz",
+    "directory": "splats"
+  },
+  "butterfly-wings-closed.spz": {
+    "url": "https://sparkjs.dev/assets/splats/butterfly-wings-closed.spz",
+    "directory": "splats"
+  },
+  "cat.spz": {
+    "url": "https://sparkjs.dev/assets/splats/cat.spz",
+    "directory": "splats"
+  },
+  "clams-and-caviar-by-ikoyi.spz": {
+    "url": "https://sparkjs.dev/assets/splats/food/clams-and-caviar-by-ikoyi.spz",
+    "directory": "splats/food"
+  },
+  "coral-caviar.spz": {
+    "url": "https://sparkjs.dev/assets/splats/food/coral-caviar.spz",
+    "directory": "splats/food"
+  },
+  "dali-env.glb": {
+    "url": "https://sparkjs.dev/assets/models/dali-env.glb",
+    "directory": "models"
+  },
+  "dali-table.glb": {
+    "url": "https://sparkjs.dev/assets/models/dali-table.glb",
+    "directory": "models"
+  },
+  "dessert.spz": {
+    "url": "https://sparkjs.dev/assets/splats/dessert.spz",
+    "directory": "splats"
+  },
+  "double-double-from-InNOut.spz": {
+    "url": "https://sparkjs.dev/assets/splats/food/double-Double-from-InNOut.spz",
+    "directory": "splats/food"
+  },
+  "fireplace.spz": {
+    "url": "https://sparkjs.dev/assets/splats/fireplace.spz",
+    "directory": "splats"
+  },
+  "forge.spz": {
+    "url": "https://sparkjs.dev/assets/splats/forge.spz",
+    "directory": "splats"
+  },
+  "furry-logo-pedestal.spz": {
+    "url": "https://sparkjs.dev/assets/splats/furry-logo-pedestal.spz",
+    "directory": "splats"
+  },
+  "gyro.spz": {
+    "url": "https://sparkjs.dev/assets/splats/food/gyro.spz",
+    "directory": "splats/food"
+  },
+  "heart.png": {
+    "url": "https://sparkjs.dev/assets/images/heart.png",
+    "directory": "images"
+  },
+  "iberico-sandwich-by-reserve.spz": {
+    "url": "https://sparkjs.dev/assets/splats/food/iberico-sandwich-by-reserve.spz",
+    "directory": "splats/food"
+  },
+  "pad-thai.spz": {
+    "url": "https://sparkjs.dev/assets/splats/food/pad-thai.spz",
+    "directory": "splats/food"
+  },
+  "penguin.spz": {
+    "url": "https://sparkjs.dev/assets/splats/penguin.spz",
+    "directory": "splats"
+  },
+  "painted-bedroom.spz": {
+    "url": "https://storage.googleapis.com/forge-dev-public/painted_bedroom.spz",
+    "directory": "splats"
+  },
+  "primerib-tamos.spz": {
+    "url": "https://sparkjs.dev/assets/splats/food/primerib-tamos.spz",
+    "directory": "splats/food"
+  },
+  "robot-head.spz": {
+    "url": "https://sparkjs.dev/assets/splats/robot-head.spz",
+    "directory": "splats"
+  },
+  "rubberduck.glb": {
+    "url": "https://sparkjs.dev/assets/models/rubberduck.glb",
+    "directory": "models"
+  },
+  "sky.jpeg": {
+    "url": "https://sparkjs.dev/assets/images/sky.jpeg",
+    "directory": "images"
+  },
+  "snow-street.spz": {
+    "url": "https://sparkjs.dev/assets/splats/snow-street.spz",
+    "directory": "splats"
+  },
+  "star.png": {
+    "url": "https://sparkjs.dev/assets/images/star.png",
+    "directory": "images"
+  },
+  "steaksandwich-mels.spz": {
+    "url": "https://sparkjs.dev/assets/splats/food/steaksandwich-mels.spz",
+    "directory": "splats/food"
+  },
+  "sutro.zip": {
+    "url": "https://sparkjs.dev/assets/splats/sutro.zip",
+    "directory": "splats"
+  },
+  "table.glb": {
+    "url": "https://sparkjs.dev/assets/models/table.glb",
+    "directory": "models"
+  },
+  "tomahawk-niku.spz": {
+    "url": "https://sparkjs.dev/assets/splats/food/tomahawk-niku.spz",
+    "directory": "splats/food"
+  },
+  "valley.spz": {
+    "url": "https://sparkjs.dev/assets/splats/valley.spz",
+    "directory": "splats"
+  },
+  "woobles.spz": {
+    "url": "https://sparkjs.dev/assets/splats/woobles.spz",
+    "directory": "splats"
+  }
+}
