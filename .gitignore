@@ -32,4 +32,4 @@ private
 dist
 
 # Gaussian Splat models
-/client/public/splat_models/*
+/client/public/splat_models/
