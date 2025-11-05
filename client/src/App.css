@@ -1,3 +1,19 @@
 #root {
-  margin: 0;
+  margin: 0 auto;
+}
+
+.pageBody {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  height: 100vh;
+  width: 100vw;
+  gap: 10px;
+}
+
+.splat {flex: 1;
+  flex: 1;
+  height: 100vh;
+  /* border: 2px solid red; */
 }
