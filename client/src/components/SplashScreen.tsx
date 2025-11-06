@@ -11,7 +11,6 @@ function SplashScreen () {
         <img
         src={SplatzLogo}
         className='h-100 w-auto transition-transform duration-300 shrink-0 pointer-events-auto hover:animate-scale-in-out'
-        // className='h-100 w-auto pointer-events-none shrink-0'
         alt='Splatz Logo'
       />
 
