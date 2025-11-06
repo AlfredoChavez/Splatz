@@ -59,6 +59,8 @@ useEffect(() => {
   };
 }, [splatURL, scene, setLoading, setProgress]);
 
+//TODO Implement a Splat reveal effect like these ones https://sparkjs.dev/examples/#splat-reveal-effects
+
   //* In TS I have to make sure to type things properly as it does not allow me to simply add a null to a type that is not supposed to be null
   const fpsMovementRef = useRef <FpsMovement | null> (null);
   const pointerControlsRef = useRef <PointerControls | null> (null);
