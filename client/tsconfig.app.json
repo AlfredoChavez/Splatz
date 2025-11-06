@@ -13,6 +13,8 @@
         "./src/*"
       ]
     },
+    // We have to allow jsx if we want to use React Bits .jsx files
+    "allowJs": true,
 
     /* Bundler mode */
     "moduleResolution": "bundler",

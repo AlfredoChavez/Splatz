@@ -15,5 +15,12 @@
 .splat {flex: 1;
   flex: 1;
   height: 100vh;
-  /* border: 2px solid red; */
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }

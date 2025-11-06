@@ -16,7 +16,7 @@ function SparkComponent({splatURL}: SparkProps) {
 
   //* Splats do not need the light component as it is "embedded" into them so we do not add it to the canvas
   return (
-    <div className="splatContainer">
+    <div className='splatContainer'>
       {loading &&
       <Progress
         value={progress}
@@ -29,7 +29,7 @@ function SparkComponent({splatURL}: SparkProps) {
         gl={{
           antialias: false,
           preserveDrawingBuffer: false,
-          powerPreference: "high-performance"
+          powerPreference: 'high-performance'
         }}
       >
         <SplatScene

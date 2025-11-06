@@ -1,6 +1,7 @@
 import './App.css';
 import SparkComponent from './components/SparkComponent';
-import './App.css';
+import SplashScreen from './components/SplashScreen';
+import { Routes, Route } from "react-router";
 
 function App() {
 
@@ -10,9 +11,14 @@ function App() {
   return (
     <>
       <div className='pageBody'>
-        <div className='splat' >
-          <SparkComponent splatURL = {splatURL}/>
-        </div>
+        <Routes>
+          <Route path="/" element={
+            <SplashScreen/>
+          } />
+          <Route path="/viewer" element={
+            <SparkComponent splatURL = {splatURL}/>
+          } />
+        </Routes>
       </div>
     </>
   )
