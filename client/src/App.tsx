@@ -11,7 +11,7 @@ function App() {
     <>
       <div className='pageBody'>
         <div className='splat' >
-          <SparkComponent splatURL= {splatURL}/>
+          <SparkComponent splatURL = {splatURL}/>
         </div>
       </div>
     </>
