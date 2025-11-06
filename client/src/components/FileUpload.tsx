@@ -74,7 +74,9 @@ function FileUpload({ onFileUpload }: FileUploadProps) {
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        onClick={() => fileInputRef.current?.click()}
+        onClick={() => {
+          setIsDragging(true);
+          fileInputRef.current?.click()}}
         className='cursor-pointer'
         >
         <input
@@ -86,13 +88,9 @@ function FileUpload({ onFileUpload }: FileUploadProps) {
         />
 
         <div className='flex flex-col items-center'>
-          <div className='invert'>
-            {isDragging ? <FaFolderOpen size={100}/> : <FaFolder size={100}/>}
+          <div>
+            {isDragging ? <FaFolderOpen size={100} className='fill-white'/> : <FaFolder size={100} className= 'fill-white hover:scale-125 transition-transform duration-300'/>}
           </div>
-          {/* <p className="text-center text-white font-extrabold text-balance">
-            Drag and drop like it's hot! 🔥
-          </p> */}
-
         </div>
 
       </div>

@@ -85,7 +85,6 @@ useEffect(() => {
       'KeyF' : new THREE.Vector3(0,1,0),
     }
 
-    //TODO Implement that controls only work when the mouse is over the specific instance of the SparkComponent (in case we have multiple SparkComponents)
     fpsMovementRef.current = new FpsMovement({keycodeMoveMapping:movementMapping, keycodeRotateMapping:rotateMapping});
     const canvas = gl.domElement;
     pointerControlsRef.current = new PointerControls({canvas});

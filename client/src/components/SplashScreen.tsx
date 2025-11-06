@@ -7,25 +7,26 @@ function SplashScreen () {
 
   return (
     <>
-      <div className='w-full h-screen fixed z-20 flex flex-col items-center justify-between py-[10vh] pointer-events-none'>
+      <div className='w-full h-screen min-h-[600px] fixed z-20 flex flex-col items-center justify-between py-[10vh] pointer-events-none'>
         <img
-          src={SplatzLogo}
-          className='h-100 w-auto pointer-events-none'
-          alt='Splatz Logo'
-        />
+        src={SplatzLogo}
+        className='h-100 w-auto hover:scale-125 transition-transform duration-300 shrink-0 pointer-events-auto'
+        // className='h-100 w-auto pointer-events-none shrink-0'
+        alt='Splatz Logo'
+      />
 
-        <div className='pointer-events-auto'>
-          <FileUpload/>
-        </div>
+      <div className='pointer-events-auto shrink-0'>
+        <FileUpload/>
+      </div>
 
         <a
           href= 'https://github.com/AlfredoChavez/Splatz'
-          className='pointer-events-auto'
+          className='pointer-events-auto shrink-0'
         >
           <img
             src={GitHubIcon}
             alt='GitHub Logo'
-            className='h-10 w-auto invert'
+            className='h-8 md:h-10 w-auto invert hover:scale-125 transition-transform duration-300'
           />
         </a>
       </div>
