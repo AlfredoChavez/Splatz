@@ -10,7 +10,7 @@ function SplashScreen () {
       <div className='w-full h-screen min-h-[600px] fixed z-20 flex flex-col items-center justify-between py-[10vh] pointer-events-none'>
         <img
         src={SplatzLogo}
-        className='h-100 w-auto hover:scale-125 transition-transform duration-300 shrink-0 pointer-events-auto'
+        className='h-100 w-auto transition-transform duration-300 shrink-0 pointer-events-auto hover:animate-scale-in-out'
         // className='h-100 w-auto pointer-events-none shrink-0'
         alt='Splatz Logo'
       />
