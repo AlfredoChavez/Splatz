@@ -1,7 +1,6 @@
 import {useEffect, useRef} from 'react';
 import {useFrame, useThree} from '@react-three/fiber';
 import {SplatMesh, FpsMovement, PointerControls, SplatLoader} from '@sparkjsdev/spark';
-import './SparkComponent.css';
 import * as THREE from 'three';
 
 //* TS forces me to create an interface to indicate which type of prop I am consuming

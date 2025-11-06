@@ -24,4 +24,4 @@ Built with **React**, **Three.js**, and **React Three Fiber**, Splatz offers a l
 - 🎲 Three.js
 - 🧩 React Three Fiber (Three.js for React)
 - 💥 Sparkjs.dev for Gaussian Splat loading & utilities
-- 🎨 Tailwind CSS, Shadcn UI and React bits for styling
+- 🎨 Tailwind CSS, Shadcn UI and React Bits for styling

@@ -1,52 +1,51 @@
-import GlassSurface from "./GlassSurface";
-// import Iridescence from "./Iridescence";
-// import { useEffect, useState } from "react";
+import MetaBalls from './MetaBalls';
 import SplatzLogo from '@/../../resources/Splatz_Logo.png';
+import GitHubIcon from '@/../../resources/github.svg';
+import FileUpload from './FileUpload';
 
 function SplashScreen () {
 
-  // function getWindowDimensions() {
-  //   const { innerWidth: width} = window;
-  //   return width;
-  // }
-  // const [windowWidth, setWindowWidth] = useState(getWindowDimensions());
-  // useEffect(()=>{
-
-  //   function handleResize() {
-  //     setWindowWidth(getWindowDimensions());
-  //   }
-  //   window.addEventListener('resize', handleResize);
-  //   return () => window.removeEventListener('resize', handleResize);
-
-  // }, []);
-
   return (
     <>
-      <div className='w-full fixed'>
-        <div className='flex items-center justify-center h-screen'>
-          <GlassSurface
-            width={200}
-            height={200}
-            opacity={100}
-            backgroundOpacity={0.7}
-            borderRadius={100}
-            className="my-custom-class"
-          >
-            <img src = {SplatzLogo} className="h-50 w-auto"></img>
-          </GlassSurface>
+      <div className='w-full h-screen fixed z-20 flex flex-col items-center justify-between py-[10vh] pointer-events-none'>
+        <img
+          src={SplatzLogo}
+          className='h-100 w-auto pointer-events-none'
+          alt='Splatz Logo'
+        />
+
+        <div className='pointer-events-auto'>
+          <FileUpload/>
         </div>
+
+        <a
+          href= 'https://github.com/AlfredoChavez/Splatz'
+          className='pointer-events-auto'
+        >
+          <img
+            src={GitHubIcon}
+            alt='GitHub Logo'
+            className='h-10 w-auto invert'
+          />
+        </a>
       </div>
 
-      {/* <div className='w-full h-full overflow-hidden'>
-        <Iridescence
-          color={[1, 1, 1]}
-          mouseReact={true}
-          amplitude={0.5}
-          speed={0.5}
+      <div className='w-full h-screen fixed inset-0 z-0 bg-[rgb(43,41,40)]'>
+        <MetaBalls
+          color='#dfeaeb'
+          cursorBallColor='#a6b1d7'
+          cursorBallSize={1}
+          ballCount={50}
+          animationSize={20}
+          enableMouseInteraction={true}
+          enableTransparency={true}
+          hoverSmoothness={0.05}
+          clumpFactor={2}
+          speed={0.3}
         />
-      </div> */}
+      </div>
     </>
-  )
+  );
 }
 
 export default SplashScreen;

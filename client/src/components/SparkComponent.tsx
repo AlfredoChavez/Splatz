@@ -1,6 +1,5 @@
 import {useState} from 'react';
 import {Canvas} from '@react-three/fiber';
-import './SparkComponent.css';
 import { Progress } from '@/components/ui/progress';
 import SplatScene from './SplatScene';
 
@@ -16,11 +15,19 @@ function SparkComponent({splatURL}: SparkProps) {
 
   //* Splats do not need the light component as it is "embedded" into them so we do not add it to the canvas
   return (
-    <div className='splatContainer'>
+    <div className='flex-1 h-full bg-[rgb(43,41,40)] overflow-hidden relative'>
       {loading &&
-      <Progress
-        value={progress}
-      />}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className='flex flex-col'>
+            <p className="text-[#FF69B4] text-center text-4xl font-extrabold text-balance m-2.5">
+              {progress} %
+            </p>
+            <div className="w-[50vw] max-w-[600px]">
+              <Progress value={progress} />
+            </div>
+          </div>
+        </div>
+      }
 
       <Canvas
         // https://threejs.org/docs/#PerspectiveCamera
@@ -39,7 +46,7 @@ function SparkComponent({splatURL}: SparkProps) {
         />
       </Canvas>
     </div>
-  )
+  );
 }
 
 export default SparkComponent;
