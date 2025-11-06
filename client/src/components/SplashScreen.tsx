@@ -1,7 +1,9 @@
 import MetaBalls from './MetaBalls';
 import SplatzLogo from '@/../../resources/Splatz_Logo.png';
-import GitHubIcon from '@/../../resources/github.svg';
 import FileUpload from './FileUpload';
+import DarkModeToggle from './DarkModeToggle';
+import { FaGithub } from "react-icons/fa";
+
 
 function SplashScreen () {
 
@@ -14,6 +16,10 @@ function SplashScreen () {
         alt='Splatz Logo'
       />
 
+      <div className='fixed bottom-14 right-14 z-30 pointer-events-auto'>
+        <DarkModeToggle />
+      </div>
+
       <div className='pointer-events-auto shrink-0'>
         <FileUpload/>
       </div>
@@ -22,15 +28,13 @@ function SplashScreen () {
           href= 'https://github.com/AlfredoChavez/Splatz'
           className='pointer-events-auto shrink-0'
         >
-          <img
-            src={GitHubIcon}
-            alt='GitHub Logo'
-            className='h-8 md:h-10 w-auto invert hover:scale-125 transition-transform duration-300'
-          />
+          <div className='h-8 md:h-10 w-auto hover:scale-125 transition-transform duration-300'>
+            <FaGithub size={50} className='stroke-10 stroke-gray-300 fill-[#dfeaeb] dark:fill-white dark:stroke-0'/>
+          </div>
         </a>
       </div>
 
-      <div className='w-full h-screen fixed inset-0 z-0 bg-[rgb(43,41,40)]'>
+      <div className='w-full h-screen fixed inset-0 z-0 bg-white dark:bg-[rgb(43,41,40)]'>
         <MetaBalls
           color='#dfeaeb'
           cursorBallColor='#a6b1d7'

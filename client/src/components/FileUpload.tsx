@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import { FaFolder } from "react-icons/fa";
 import { FaFolderOpen } from "react-icons/fa";
 
-interface FileUploadProps {
+type FileUploadProps = {
   onFileUpload?: (fileData: FileData) => void;
 }
 
@@ -13,6 +13,8 @@ export interface FileData {
   size: number;
   data: string;
 }
+
+
 
 function FileUpload({ onFileUpload }: FileUploadProps) {
   const [isDragging, setIsDragging] = useState(false);
@@ -44,10 +46,20 @@ function FileUpload({ onFileUpload }: FileUploadProps) {
     const selectedFile = e.target.files?.[0];
     if (selectedFile) {
       processFile(selectedFile);
+      // console.log('seleceted file works!')
+    }
+    else {
+      // console.log('seleceted file does not work')
+      setIsDragging(false);
     }
   };
 
   const processFile = (uploadedFile: File) => {
+
+    if (!uploadedFile) {
+      console.log('seleceted file does not work')
+      setIsDragging(false);
+    }
 
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -68,15 +80,29 @@ function FileUpload({ onFileUpload }: FileUploadProps) {
     reader.readAsDataURL(uploadedFile);
   };
 
+  const handleFileDialog = () => {
+    setIsDragging(true);
+
+    const handleFocus = () => {
+      setTimeout(() => {
+        if (!fileInputRef.current?.files?.length) {
+          setIsDragging(false);
+        }
+        window.removeEventListener('focus', handleFocus);
+      }, 200);
+    };
+
+    window.addEventListener('focus', handleFocus);
+    fileInputRef.current?.click();
+  };
+
   return (
     <div className='w-30 h-30'>
       <div
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        onClick={() => {
-          setIsDragging(true);
-          fileInputRef.current?.click()}}
+        onClick= {handleFileDialog}
         className='cursor-pointer'
         >
         <input
@@ -89,7 +115,7 @@ function FileUpload({ onFileUpload }: FileUploadProps) {
 
         <div className='flex flex-col items-center'>
           <div>
-            {isDragging ? <FaFolderOpen size={100} className='fill-white'/> : <FaFolder size={100} className= 'fill-white hover:scale-125 transition-transform duration-300'/>}
+            {isDragging ? <FaFolderOpen size={100} className='stroke-10 stroke-gray-300 dark:fill-white fill-[#dfeaeb] dark:stroke-0'/> : <FaFolder size={100} className= 'stroke-10 stroke-gray-300 dark:fill-white fill-[#dfeaeb] hover:scale-125 transition-transform duration-300 dark:stroke-0'/>}
           </div>
         </div>
 
