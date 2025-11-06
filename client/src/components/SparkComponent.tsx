@@ -1,7 +1,8 @@
 import {useEffect, useRef} from 'react';
 import {Canvas, useFrame, useThree} from '@react-three/fiber';
-import {SplatMesh, FpsMovement, PointerControls} from '@sparkjsdev/spark';
+import {SplatMesh, FpsMovement, PointerControls, SplatLoader} from '@sparkjsdev/spark';
 import './SparkComponent.css';
+import * as THREE from 'three';
 
 //* TS forces me to create an interface to indicate which type of prop I am consuming
 interface splatUrlProp {
@@ -17,60 +18,34 @@ function SplatScene ({splatURL}: splatUrlProp) {
   const {camera, gl, scene} = useThree();
 
   useEffect(() =>{
+    // https://sparkjs.dev/docs/loading-splats/
     //https://sparkjs.dev/docs/splat-mesh/
-    let mounted = true;
     //* We load the splat with this IIFE function
     (async () => {
       try {
-        const response = await fetch(splatURL);
-        if(!mounted) return;
-
-        const arrayBuffer = await response.arrayBuffer();
-        if(!mounted) return;
-
-        const fileBytes = new Uint8Array(arrayBuffer);
-        const fileName = splatURL.split('/').pop();
-
-        const splat = new SplatMesh({
-          fileBytes,
-          fileName
+        const loader = new SplatLoader();
+        loader.loadAsync(splatURL, (event) => {
+          if (event.type === "progress") {
+            const progress = event.lengthComputable
+              ? `${((event.loaded / event.total) * 100).toFixed(2)}%`
+              : `${event.loaded} bytes`;
+            console.log(`Background download progress: ${progress}`);
+          }
+        })
+        .then((packedSplats) => {
+          const splatMesh = new SplatMesh({packedSplats});
+          splatMesh.quaternion.set(1, 0, 0, 0);
+          scene.add(splatMesh);
+        })
+        .catch((error:Error) => {
+          console.error(error);
         });
-        //* Rotate the splat to the correct orientation
-        splat.quaternion.set(1, 0, 0, 0);
-
-        if(!mounted) {
-          try {
-            splat.dispose();
-          } catch (error) {
-            console.error('🚨 Error loading the Splat:', error);
-            return;
-          };
-        };
-
-        scene.add(splat);
-        splatRef.current = splat;
-
-        //TODO Check if we can trigger this loaded check, it gives some errors related to the Spark and TS types.
-        //TODO This will probably be important if we want to add some reveal effect to the splat when loading? https://sparkjs.dev/examples/#splat-reveal-effects
-        //! await splat.loaded;
-
-        if (!mounted) {
-          scene.remove(splat);
-          try {
-            splat.dispose();
-          } catch (error) {
-            console.error('🚨 Error loading the Splat:', error);
-          };
-          splatRef.current = null;
-        }
-
       } catch (error) {
-        console.error('🚨 Error loading the Splat:', error);
+        console.error('🚨 Error mounting the Splat:', error);
       };
     })();
 
     return () => {
-      mounted = false;
       if (splatRef.current) {
         scene.remove(splatRef.current);
         if(splatRef.current.dispose) {
@@ -82,14 +57,32 @@ function SplatScene ({splatURL}: splatUrlProp) {
   }, [splatURL, scene]);
 
   //* In TS I have to make sure to type things properly as it does not allow me to simply add a null to a type that is not supposed to be null.
-  //TODO Customise the controls with specific keyboard inputs
   const fpsMovementRef = useRef <FpsMovement | null> (null);
   const pointerControlsRef = useRef <PointerControls | null> (null);
 
   //* If we have a renderer, we have to set up the controls
   useEffect(()=>{
+    //* Customise the controls with specific keyboard inputs
+    // https://sparkjs.dev/docs/controls/
+    // https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode
+    const movementMapping = {
+      'KeyQ' : new THREE.Vector3(0,-1,0),
+      'KeyE' : new THREE.Vector3(0,1,0),
+      'KeyW' : new THREE.Vector3(0,0,-1),
+      'KeyA' : new THREE.Vector3(-1,0,0),
+      'KeyS' : new THREE.Vector3(0,0,1),
+      'KeyD' : new THREE.Vector3(1,0,0),
+    };
+
+    const rotateMapping = {
+      'KeyZ' : new THREE.Vector3(0,0,1),
+      'KeyX' : new THREE.Vector3(0,0,-1),
+      'KeyR' : new THREE.Vector3(0,-1,0),
+      'KeyF' : new THREE.Vector3(0,1,0),
+    }
+
     //TODO Implement that controls only work when the mouse is over the specific instance of the SparkComponent (in case we have multiple SparkComponents)
-    fpsMovementRef.current = new FpsMovement();
+    fpsMovementRef.current = new FpsMovement({keycodeMoveMapping:movementMapping, keycodeRotateMapping:rotateMapping});
     const canvas = gl.domElement;
     pointerControlsRef.current = new PointerControls({canvas});
   }, [gl]);
