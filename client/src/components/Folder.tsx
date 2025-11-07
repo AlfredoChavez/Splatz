@@ -86,7 +86,7 @@ const Folder: React.FC<FolderProps> = ({
         setIsDragging(false);
         pickerActiveRef.current = false;
         setPaperOffsets(Array.from({ length: maxItems }, () => ({ x: 0, y: 0 })));
-        // Reset input value after cancel
+        //* Reset input value after cancel
         if (fileInputRef.current) {
           fileInputRef.current.value = '';
         }
