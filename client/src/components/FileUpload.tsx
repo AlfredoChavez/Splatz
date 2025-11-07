@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router';
-import { FaFolder, FaFolderOpen } from 'react-icons/fa';
+import Folder from './Folder';
 
 type FileUploadProps = {
   onFileUpload?: (fileData: FileData) => void;
@@ -102,8 +102,11 @@ function FileUpload({ onFileUpload }: FileUploadProps) {
 
         <div className='flex flex-col items-center'>
           <div>
-            {isDragging ? <FaFolderOpen size={100} className='stroke-10 stroke-gray-300 dark:fill-white fill-[#dfeaeb] dark:stroke-0'/> : <FaFolder size={100} className= 'stroke-10 stroke-gray-300 dark:fill-white fill-[#dfeaeb] hover:scale-125 transition-transform duration-300 dark:stroke-0'/>}
+            <Folder size ={1}/>
           </div>
+          {/* <div>
+            {isDragging ? <FaFolderOpen size={100} className='stroke-10 stroke-gray-300 dark:fill-white fill-[#dfeaeb] dark:stroke-0'/> : <FaFolder size={100} className= 'stroke-10 stroke-gray-300 dark:fill-white fill-[#dfeaeb] hover:scale-125 transition-transform duration-300 dark:stroke-0'/>}
+          </div> */}
         </div>
 
       </div>
