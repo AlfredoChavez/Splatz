@@ -32,6 +32,17 @@ export default [
       '@stylistic/comma-dangle': ['error', 'always-multiline'],
       '@stylistic/no-trailing-spaces': 'error',
       '@stylistic/no-multiple-empty-lines': ['error', { max: 1 }],
+
+      '@stylistic/no-multi-spaces': 'error',
+      '@stylistic/no-extra-semi': 'error',
+      '@stylistic/no-whitespace-before-property': 'error',
+      '@stylistic/space-in-parens': ['error', 'never'],
+      '@stylistic/space-before-blocks': ['error', 'always'],
+      '@stylistic/space-before-function-paren': [
+        'error',
+        { anonymous: 'always', named: 'never', asyncArrow: 'always' },
+      ],
+      '@stylistic/space-infix-ops': 'error',
     },
   },
 ]

@@ -11,7 +11,7 @@ type SplatSceneProps = {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
 };
 
-function SplatScene_Reveal ({splatURL, setLoading, setProgress}: SplatSceneProps) {
+function SplatScene_Reveal({splatURL, setLoading, setProgress}: SplatSceneProps) {
 
   //* I need a reference to the splat so I keep the splat constant between frames
   const splatRef = useRef <SplatMesh | null> (null);

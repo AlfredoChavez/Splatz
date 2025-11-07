@@ -5,7 +5,7 @@ import { FaGithub } from 'react-icons/fa';
 import DarkModeToggle from './ui/DarkModeToggle';
 import { useState } from 'react';
 
-function SplashScreen () {
+function SplashScreen() {
 
   const [isDark, setIsDark] = useState(false);
 
