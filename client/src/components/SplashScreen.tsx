@@ -1,4 +1,4 @@
-import MetaBalls from './MetaBalls';
+import MetaBalls from './ui/MetaBalls/MetaBalls';
 import SplatzLogo from '@/../../resources/Splatz_Logo.png';
 import FileUpload from './FileUpload';
 import { FaGithub } from "react-icons/fa";
