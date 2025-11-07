@@ -1,8 +1,9 @@
 import MetaBalls from './MetaBalls';
 import SplatzLogo from '@/../../resources/Splatz_Logo.png';
 import FileUpload from './FileUpload';
-import DarkModeToggle from './DarkModeToggle';
+// import DarkModeToggle from './DarkModeToggle';
 import { FaGithub } from "react-icons/fa";
+import DarkModeToggle from './ui/DarkModeToggle';
 
 
 function SplashScreen () {
@@ -17,7 +18,7 @@ function SplashScreen () {
       />
 
       <div className='fixed bottom-14 right-14 z-30 pointer-events-auto'>
-        <DarkModeToggle />
+        <DarkModeToggle scale={1}/>
       </div>
 
       <div className='pointer-events-auto shrink-0'>
