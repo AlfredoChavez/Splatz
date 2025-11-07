@@ -1,8 +1,8 @@
 import {useState, useEffect} from 'react';
 import {Canvas} from '@react-three/fiber';
 import { Progress } from '@/components/ui/progress';
-import SplatScene from './SplatScene';
 import { useLocation } from 'react-router'
+import SplatScene_Reveal from './SplatScene_Reveal';
 
 function SparkComponent() {
   //* I need to keep track of the loading progress with these states
@@ -14,20 +14,19 @@ function SparkComponent() {
   const fileURL = location.state.file.url;
 
   useEffect(()=>{
-    // console.log(location.state.file.url);
     setSplatURL(fileURL);
   }, [fileURL]);
 
-  //* Splats do not need the light component as it is "embedded" into them so we do not add it to the canvas
+  //* Splats do not need the light component as it is 'embedded' into them so we do not add it to the canvas
   return (
     <div className='flex-1 h-full bg-[rgb(43,41,40)] overflow-hidden relative'>
       {loading &&
-        <div className="absolute inset-0 flex items-center justify-center">
+        <div className='absolute inset-0 flex items-center justify-center'>
           <div className='flex flex-col'>
-            <p className="text-[#dfeaeb] text-center text-4xl font-extrabold text-balance m-2.5">
+            <p className='text-[#dfeaeb] text-center text-4xl font-extrabold text-balance m-2.5'>
               {Math.round(progress)} %
             </p>
-            <div className="w-[50vw] max-w-[600px]">
+            <div className='w-[50vw] max-w-[600px]'>
               <Progress value={progress} />
             </div>
           </div>
@@ -44,7 +43,7 @@ function SparkComponent() {
           powerPreference: 'high-performance'
         }}
       >
-        <SplatScene
+        <SplatScene_Reveal
         splatURL = {splatURL}
         setLoading = {setLoading}
         setProgress = {setProgress}

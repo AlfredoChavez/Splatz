@@ -83,7 +83,7 @@ function DarkModeToggle({ scale = 3, isDark, setIsDark }: ToggleProps) {
 
         .toggle-slider::before {
           position: absolute;
-          content: "";
+          content: '';
           height: 26px;
           width: 26px;
           left: 4px;
@@ -117,7 +117,7 @@ function DarkModeToggle({ scale = 3, isDark, setIsDark }: ToggleProps) {
         }
 
         .toggle-slider::after {
-          content: "";
+          content: '';
           position: absolute;
           background: var(--crater);
           width: 4px;
@@ -164,7 +164,7 @@ function DarkModeToggle({ scale = 3, isDark, setIsDark }: ToggleProps) {
 
         .toggle-container input:checked + .toggle-slider .star::before,
         .toggle-container input:checked + .toggle-slider .star::after {
-          content: "";
+          content: '';
           position: absolute;
           width: 0;
           height: 0;
@@ -206,17 +206,17 @@ function DarkModeToggle({ scale = 3, isDark, setIsDark }: ToggleProps) {
       `}</style>
 
       <div>
-        <div className="text-center">
-          <label className="toggle-container">
+        <div className='text-center'>
+          <label className='toggle-container'>
             <input
-              type="checkbox"
+              type='checkbox'
               checked={isDark}
               onChange={toggleDarkMode}
             />
-            <span className="toggle-slider">
-              <div className="background"></div>
-              <div className="star"></div>
-              <div className="star"></div>
+            <span className='toggle-slider'>
+              <div className='background'></div>
+              <div className='star'></div>
+              <div className='star'></div>
             </span>
           </label>
         </div>

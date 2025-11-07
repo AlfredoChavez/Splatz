@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router';
-import { FaFolder, FaFolderOpen } from "react-icons/fa";
+import { FaFolder, FaFolderOpen } from 'react-icons/fa';
 
 type FileUploadProps = {
   onFileUpload?: (fileData: FileData) => void;
@@ -43,10 +43,8 @@ function FileUpload({ onFileUpload }: FileUploadProps) {
     const selectedFile = e.target.files?.[0];
     if (selectedFile) {
       processFile(selectedFile);
-      // console.log('seleceted file works!')
     }
     else {
-      // console.log('seleceted file does not work')
       setIsDragging(false);
     }
   };
@@ -65,7 +63,6 @@ function FileUpload({ onFileUpload }: FileUploadProps) {
     if (onFileUpload) {
       onFileUpload(fileData);
     }
-    // console.log(fileURL);
     navigate('/viewer', { state: { file: fileData } });
 
   };
