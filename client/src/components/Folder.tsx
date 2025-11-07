@@ -7,18 +7,7 @@ interface FolderProps {
   onFileUpload?: (file: File) => void;
 }
 
-const darkenColor = (hex: string, percent: number): string => {
-  let color = hex.startsWith('#') ? hex.slice(1) : hex;
-  if (color.length === 3) color = color.split('').map(c => c + c).join('');
-  const num = parseInt(color, 16);
-  const r = Math.max(0, Math.min(255, Math.floor(((num >> 16) & 0xff) * (1 - percent))));
-  const g = Math.max(0, Math.min(255, Math.floor(((num >> 8) & 0xff) * (1 - percent))));
-  const b = Math.max(0, Math.min(255, Math.floor((num & 0xff) * (1 - percent))));
-  return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
-};
-
 const Folder: React.FC<FolderProps> = ({
-  color = '#5227FF',
   size = 1,
   className = '',
   onFileUpload,
@@ -32,11 +21,6 @@ const Folder: React.FC<FolderProps> = ({
   const [paperOffsets, setPaperOffsets] = useState<{ x: number; y: number }[]>(
     Array.from({ length: maxItems }, () => ({ x: 0, y: 0 })),
   );
-
-  const folderBackColor = darkenColor(color, 0.08);
-  const paper1 = darkenColor('#ffffff', 0.1);
-  const paper2 = darkenColor('#ffffff', 0.05);
-  const paper3 = '#ffffff';
 
   const pickerActiveRef = useRef(false);
   const cancelCheckTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -199,16 +183,14 @@ const Folder: React.FC<FolderProps> = ({
       />
 
       <div
-        className="relative w-[100px] h-20 rounded-tl-0 rounded-tr-[10px] rounded-br-[10px] rounded-bl-[10px] transition-all duration-300"
+        className="relative w-[100px] h-20 rounded-tl-0 rounded-tr-[10px] rounded-br-[10px] rounded-bl-[10px] transition-all duration-300 bg-gray-300 dark:bg-gray-200"
         style={{
-          backgroundColor: folderBackColor,
           transform: open || isDragging ? 'translateY(-8px)' : 'translateY(0)',
           boxShadow: isDragging ? '0 0 12px rgba(82,39,255,0.4)' : 'none',
         }}
       >
         <span
-          className="absolute z-0 bottom-[98%] left-0 w-[30px] h-2.5 rounded-tl-[5px] rounded-tr-[5px]"
-          style={{ backgroundColor: folderBackColor }}
+          className="absolute z-0 bottom-[98%] left-0 w-[30px] h-2.5 rounded-tl-[5px] rounded-tr-[5px] bg-gray-300 dark:bg-gray-200"
         />
 
         {Array.from({ length: maxItems }).map((_, i) => {
@@ -228,10 +210,9 @@ const Folder: React.FC<FolderProps> = ({
               onMouseLeave={e => handlePaperMouseLeave(e, i)}
               className={`absolute z-20 bottom-[10%] left-1/2 transition-all duration-300 ease-in-out ${
                 !isOpen ? 'transform -translate-x-1/2 translate-y-[10%]' : 'hover:scale-110'
-              } ${sizeClasses}`}
+              } ${sizeClasses} bg-gray-200 border border-gray-300 dark:border-white`}
               style={{
                 ...(!isOpen ? {} : { transform: transformStyle }),
-                backgroundColor: i === 0 ? paper1 : i === 1 ? paper2 : paper3,
                 borderRadius: '10px',
               }}
             />
@@ -239,17 +220,15 @@ const Folder: React.FC<FolderProps> = ({
         })}
 
         <div
-          className="absolute z-30 w-full h-full origin-bottom transition-transform duration-300 ease-in-out"
+          className="absolute z-30 w-full h-full origin-bottom transition-transform duration-300 ease-in-out bg-[#dfeaeb] dark:bg-white"
           style={{
-            backgroundColor: color,
             borderRadius: '5px 10px 10px 10px',
             transform: open || isDragging ? 'skew(15deg) scaleY(0.6)' : 'none',
           }}
         />
         <div
-          className="absolute z-30 w-full h-full origin-bottom transition-transform duration-300 ease-in-out"
+          className="absolute z-30 w-full h-full origin-bottom transition-transform duration-300 ease-in-out bg-[#dfeaeb] dark:bg-white"
           style={{
-            backgroundColor: color,
             borderRadius: '5px 10px 10px 10px',
             transform: open || isDragging ? 'skew(-15deg) scaleY(0.6)' : 'none',
           }}
