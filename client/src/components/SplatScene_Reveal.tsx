@@ -9,7 +9,7 @@ type SplatSceneProps = {
   splatURL: string
   setProgress: React.Dispatch<React.SetStateAction<number>>
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
-}
+};
 
 function SplatScene_Reveal ({splatURL, setLoading, setProgress}: SplatSceneProps) {
 
@@ -84,7 +84,7 @@ function SplatScene_Reveal ({splatURL, setLoading, setProgress}: SplatSceneProps
 
           gsplat = d.apply({ gsplat, t: animateT.current }).gsplat;
           return { gsplat };
-        }
+        },
       );
 
       splatMesh.updateGenerator();
@@ -118,7 +118,7 @@ function SplatScene_Reveal ({splatURL, setLoading, setProgress}: SplatSceneProps
 
         setSplatLoaded(true);
         baseTime.current = 0;
-        setupMagicEffect(splatMesh)
+        setupMagicEffect(splatMesh);
 
       } catch (error) {
         console.error('🚨 Error mounting the Splat:', error);
@@ -166,7 +166,7 @@ function SplatScene_Reveal ({splatURL, setLoading, setProgress}: SplatSceneProps
       'KeyX' : new THREE.Vector3(0,0,-1),
       'KeyR' : new THREE.Vector3(0,-1,0),
       'KeyF' : new THREE.Vector3(0,1,0),
-    }
+    };
 
     fpsMovementRef.current = new FpsMovement({keycodeMoveMapping:movementMapping, keycodeRotateMapping:rotateMapping});
     const canvas = gl.domElement;

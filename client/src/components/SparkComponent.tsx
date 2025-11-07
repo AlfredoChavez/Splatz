@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import {Canvas} from '@react-three/fiber';
 import { Progress } from '@/components/ui/progress';
-import { useLocation } from 'react-router'
+import { useLocation } from 'react-router';
 import SplatScene_Reveal from './SplatScene_Reveal';
 
 function SparkComponent() {
@@ -10,7 +10,7 @@ function SparkComponent() {
   const [loading, setLoading] = useState(false);
   const [splatURL, setSplatURL] = useState('');
 
-  const location = useLocation()
+  const location = useLocation();
   const fileURL = location.state.file.url;
 
   useEffect(()=>{
@@ -40,13 +40,13 @@ function SparkComponent() {
         gl={{
           antialias: false,
           preserveDrawingBuffer: false,
-          powerPreference: 'high-performance'
+          powerPreference: 'high-performance',
         }}
       >
         <SplatScene_Reveal
-        splatURL = {splatURL}
-        setLoading = {setLoading}
-        setProgress = {setProgress}
+          splatURL = {splatURL}
+          setLoading = {setLoading}
+          setProgress = {setProgress}
         />
       </Canvas>
     </div>

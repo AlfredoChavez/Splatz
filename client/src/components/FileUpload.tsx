@@ -4,7 +4,7 @@ import { FaFolder, FaFolderOpen } from 'react-icons/fa';
 
 type FileUploadProps = {
   onFileUpload?: (fileData: FileData) => void;
-}
+};
 
 export interface FileData {
   name: string;
@@ -57,7 +57,7 @@ function FileUpload({ onFileUpload }: FileUploadProps) {
       name: file.name,
       type: file.type,
       size: file.size,
-      url: fileURL
+      url: fileURL,
     };
 
     if (onFileUpload) {
@@ -91,7 +91,7 @@ function FileUpload({ onFileUpload }: FileUploadProps) {
         onDrop={handleDrop}
         onClick= {handleFileDialog}
         className='cursor-pointer'
-        >
+      >
         <input
           ref={fileInputRef}
           type='file'

@@ -7,7 +7,7 @@ type ToggleProps = {
   scale? : number,
   isDark: boolean,
   setIsDark: React.Dispatch<React.SetStateAction<boolean>>;
-}
+};
 
 function DarkModeToggle({ scale = 3, isDark, setIsDark }: ToggleProps) {
 

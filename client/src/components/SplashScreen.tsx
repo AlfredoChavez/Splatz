@@ -5,7 +5,6 @@ import { FaGithub } from 'react-icons/fa';
 import DarkModeToggle from './ui/DarkModeToggle';
 import { useState } from 'react';
 
-
 function SplashScreen () {
 
   const [isDark, setIsDark] = useState(false);
@@ -14,22 +13,22 @@ function SplashScreen () {
     <>
       <div className='w-full h-screen min-h-[600px] fixed z-20 flex flex-col items-center justify-between py-[10vh] pointer-events-none'>
         <img
-        src={SplatzLogo}
-        className='h-100 w-auto transition-transform duration-300 shrink-0 pointer-events-auto hover:animate-scale-in-out'
-        alt='Splatz Logo'
-      />
-
-      <div className='fixed bottom-14 right-14 z-30 pointer-events-auto'>
-        <DarkModeToggle
-        scale={1}
-        isDark = {isDark}
-        setIsDark={setIsDark}
+          src={SplatzLogo}
+          className='h-100 w-auto transition-transform duration-300 shrink-0 pointer-events-auto hover:animate-scale-in-out'
+          alt='Splatz Logo'
         />
-      </div>
 
-      <div className='pointer-events-auto shrink-0'>
-        <FileUpload/>
-      </div>
+        <div className='fixed bottom-14 right-14 z-30 pointer-events-auto'>
+          <DarkModeToggle
+            scale={1}
+            isDark = {isDark}
+            setIsDark={setIsDark}
+          />
+        </div>
+
+        <div className='pointer-events-auto shrink-0'>
+          <FileUpload/>
+        </div>
 
         <a
           href= 'https://github.com/AlfredoChavez/Splatz'

@@ -1,7 +1,7 @@
 import './App.css';
 import SparkComponent from './components/SparkComponent';
 import SplashScreen from './components/SplashScreen';
-import { Routes, Route } from "react-router";
+import { Routes, Route } from 'react-router';
 
 function App() {
 
@@ -18,7 +18,7 @@ function App() {
         </Routes>
       </div>
     </>
-  )
+  );
 }
 
 export default App;
