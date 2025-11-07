@@ -25,7 +25,7 @@ function SparkComponent() {
         <div className="absolute inset-0 flex items-center justify-center">
           <div className='flex flex-col'>
             <p className="text-[#dfeaeb] text-center text-4xl font-extrabold text-balance m-2.5">
-              {progress} %
+              {Math.round(progress)} %
             </p>
             <div className="w-[50vw] max-w-[600px]">
               <Progress value={progress} />
