@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-
+// https://www.cssscript.com/creative-animated-toggle-switch/
+//* Created this plain HTML and CSS into a React component with help of AI for styling
+//! The original version used webkit for transitions for example
 function DarkModeToggle({ scale = 3 }) {
   const [isDark, setIsDark] = useState(false);
 
@@ -22,7 +24,7 @@ function DarkModeToggle({ scale = 3 }) {
       return newValue;
     });
   };
-  //TODO Add a solid border/edge to the button that also changes color when we toggle between dark and light modes, match/better align to the colour palette of the SplashScreen as well
+
   return (
     <div>
       <style>{`
@@ -39,8 +41,10 @@ function DarkModeToggle({ scale = 3 }) {
           --shadow-02: #ffffff22;
           --shadow-03: #555555;
           // --white: #ffffff;
-          --background-day: linear-gradient(skyblue, cadetblue);
-          --background-night: linear-gradient(-45deg, #222, #000030);
+          --background-day: linear-gradient(#dfeaeb, cadetblue);
+          // --background-day: linear-gradient(skyblue, cadetblue);
+          --background-night: linear-gradient(-45deg, #222, #111111);
+          // --background-night: linear-gradient(-45deg, #222, #000030);
         }
 
         .toggle-container {
@@ -68,6 +72,7 @@ function DarkModeToggle({ scale = 3 }) {
           overflow: hidden;
           z-index: 1;
           border-radius: 34px;
+          border: 2px solid white;
         }
 
         .toggle-slider::before {
@@ -91,6 +96,7 @@ function DarkModeToggle({ scale = 3 }) {
         .toggle-container input:checked + .toggle-slider {
           background: var(--background-night);
           filter: drop-shadow(0 0 2px var(--white));
+          border: 2px solid var(--moon-shadow);
         }
 
         .toggle-container input:checked + .toggle-slider::before {
@@ -181,7 +187,7 @@ function DarkModeToggle({ scale = 3 }) {
           height: 10px;
           background: var(--cloud);
           border-radius: 50%;
-          bottom: 0;
+          bottom: -4px;
           right: 0;
           box-shadow:
             0 -10px 0 8px var(--cloud),
