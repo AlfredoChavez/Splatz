@@ -1,9 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 // https://www.cssscript.com/creative-animated-toggle-switch/
 //* Created this plain HTML and CSS into a React component with help of AI for styling
 //! The original version used webkit for transitions for example
-function DarkModeToggle({ scale = 3 }) {
-  const [isDark, setIsDark] = useState(false);
+
+type ToggleProps = {
+  scale? : number,
+  isDark: boolean,
+  setIsDark: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function DarkModeToggle({ scale = 3, isDark, setIsDark }: ToggleProps) {
 
   useEffect(() => {
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -11,7 +17,7 @@ function DarkModeToggle({ scale = 3 }) {
       setIsDark(true);
       document.documentElement.classList.add('dark');
     }
-  }, []);
+  }, [setIsDark]);
 
   const toggleDarkMode = () => {
     setIsDark(prev => {

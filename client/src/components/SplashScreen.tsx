@@ -3,9 +3,12 @@ import SplatzLogo from '@/../../resources/Splatz_Logo.png';
 import FileUpload from './FileUpload';
 import { FaGithub } from "react-icons/fa";
 import DarkModeToggle from './ui/DarkModeToggle';
+import { useState } from 'react';
 
 
 function SplashScreen () {
+
+  const [isDark, setIsDark] = useState(false);
 
   return (
     <>
@@ -17,7 +20,11 @@ function SplashScreen () {
       />
 
       <div className='fixed bottom-14 right-14 z-30 pointer-events-auto'>
-        <DarkModeToggle scale={1}/>
+        <DarkModeToggle
+        scale={1}
+        isDark = {isDark}
+        setIsDark={setIsDark}
+        />
       </div>
 
       <div className='pointer-events-auto shrink-0'>
@@ -36,8 +43,8 @@ function SplashScreen () {
 
       <div className='w-full h-screen fixed inset-0 z-0 bg-white dark:bg-[rgb(43,41,40)]'>
         <MetaBalls
-          color='#dfeaeb'
-          cursorBallColor='#a6b1d7'
+          color={isDark && '#dfeaeb' || '#444444'}
+          cursorBallColor= {isDark && '#a6b1d7' || '#666666'}
           cursorBallSize={1}
           ballCount={50}
           animationSize={20}
