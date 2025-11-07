@@ -17,6 +17,7 @@ function SparkComponent() {
     setSplatURL(fileURL);
   }, [fileURL]);
 
+  //TODO Add Home Button to go back to the splash screen
   //* Splats do not need the light component as it is 'embedded' into them so we do not add it to the canvas
   return (
     <div className='flex-1 h-full bg-[rgb(43,41,40)] overflow-hidden relative'>

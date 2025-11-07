@@ -14,7 +14,8 @@ export interface FileData {
 }
 
 function FileUpload({ onFileUpload }: FileUploadProps) {
-  const [isDragging, setIsDragging] = useState(false);
+  //* Trick to avoid unused variables
+  const [, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
@@ -104,9 +105,6 @@ function FileUpload({ onFileUpload }: FileUploadProps) {
           <div>
             <Folder size ={1}/>
           </div>
-          {/* <div>
-            {isDragging ? <FaFolderOpen size={100} className='stroke-10 stroke-gray-300 dark:fill-white fill-[#dfeaeb] dark:stroke-0'/> : <FaFolder size={100} className= 'stroke-10 stroke-gray-300 dark:fill-white fill-[#dfeaeb] hover:scale-125 transition-transform duration-300 dark:stroke-0'/>}
-          </div> */}
         </div>
 
       </div>
