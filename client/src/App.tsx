@@ -6,7 +6,7 @@ import { Routes, Route } from "react-router";
 function App() {
 
   // const splatURL = '/splat_models/InteriorDesign.ply';
-  const splatURL = '/splat_models/sutro.zip';
+  // const splatURL = '/splat_models/sutro.zip';
 
   return (
     <>
@@ -16,7 +16,8 @@ function App() {
             <SplashScreen/>
           } />
           <Route path="/viewer" element={
-            <SparkComponent splatURL = {splatURL}/>
+            // <SparkComponent splatURL = {splatURL}/>
+            <SparkComponent/>
           } />
         </Routes>
       </div>

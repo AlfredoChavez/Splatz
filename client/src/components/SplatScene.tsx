@@ -2,6 +2,7 @@ import {useEffect, useRef} from 'react';
 import {useFrame, useThree} from '@react-three/fiber';
 import {SplatMesh, FpsMovement, PointerControls, SplatLoader} from '@sparkjsdev/spark';
 import * as THREE from 'three';
+import { useNavigate } from 'react-router';
 
 //* TS forces me to create an interface to indicate which type of prop I am consuming
 type SplatSceneProps = {
@@ -18,8 +19,10 @@ function SplatScene ({splatURL, setLoading, setProgress}: SplatSceneProps) {
   //* I need to build my scene using my camera, renderer and the actual scene
   const {camera, gl, scene} = useThree();
 
-useEffect(() => {
-  // https://sparkjs.dev/docs/loading-splats/
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // https://sparkjs.dev/docs/loading-splats/
   //https://sparkjs.dev/docs/splat-mesh/
   //* We load the splat with this IIFE function
   (async () => {
@@ -37,13 +40,16 @@ useEffect(() => {
       const splatMesh = new SplatMesh({ packedSplats });
       splatMesh.quaternion.set(1, 0, 0, 0);
       scene.add(splatMesh);
-      splatRef.current = splatMesh; // Store the reference
+      splatRef.current = splatMesh;
 
     } catch (error) {
       console.error('🚨 Error mounting the Splat:', error);
+      navigate(-1);
     } finally {
       setLoading(false);
       setProgress(0);
+      URL.revokeObjectURL(splatURL);
+      console.log(`Revoked temporary URL: ${splatURL} 🗑️`);
     }
   })();
 
@@ -56,7 +62,7 @@ useEffect(() => {
       splatRef.current = null;
     }
   };
-}, [splatURL, scene, setLoading, setProgress]);
+}, [splatURL, scene, setLoading, setProgress, navigate]);
 
 //TODO Implement a Splat reveal effect like these ones https://sparkjs.dev/examples/#splat-reveal-effects
 

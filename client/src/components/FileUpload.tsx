@@ -1,7 +1,6 @@
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router';
-import { FaFolder } from "react-icons/fa";
-import { FaFolderOpen } from "react-icons/fa";
+import { FaFolder, FaFolderOpen } from "react-icons/fa";
 
 type FileUploadProps = {
   onFileUpload?: (fileData: FileData) => void;
@@ -11,7 +10,7 @@ export interface FileData {
   name: string;
   type: string;
   size: number;
-  data: string;
+  url: string;
 }
 
 function FileUpload({ onFileUpload }: FileUploadProps) {
@@ -52,30 +51,23 @@ function FileUpload({ onFileUpload }: FileUploadProps) {
     }
   };
 
-  const processFile = (uploadedFile: File) => {
+  const processFile = (file: File) => {
 
-    if (!uploadedFile) {
-      console.log('seleceted file does not work')
-      setIsDragging(false);
-    }
+    const fileURL = URL.createObjectURL(file);
 
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const fileData: FileData = {
-        name: uploadedFile.name,
-        type: uploadedFile.type,
-        size: uploadedFile.size,
-        data: e.target?.result as string,
-      };
-
-      if (onFileUpload) {
-        onFileUpload(fileData);
-      }
-
-      navigate('/viewer', { state: { file: fileData } });
+    const fileData: FileData = {
+      name: file.name,
+      type: file.type,
+      size: file.size,
+      url: fileURL
     };
 
-    reader.readAsDataURL(uploadedFile);
+    if (onFileUpload) {
+      onFileUpload(fileData);
+    }
+    // console.log(fileURL);
+    navigate('/viewer', { state: { file: fileData } });
+
   };
 
   const handleFileDialog = () => {
