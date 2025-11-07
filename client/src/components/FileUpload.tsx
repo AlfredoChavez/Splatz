@@ -103,7 +103,7 @@ function FileUpload({ onFileUpload }: FileUploadProps) {
 
         <div className='flex flex-col items-center'>
           <div>
-            <Folder size ={1}/>
+            <Folder size={1} onFileUpload={processFile} />
           </div>
         </div>
 
