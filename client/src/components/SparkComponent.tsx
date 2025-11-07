@@ -20,7 +20,7 @@ function SparkComponent({splatURL}: SparkProps) {
       {loading &&
         <div className="absolute inset-0 flex items-center justify-center">
           <div className='flex flex-col'>
-            <p className="text-[#FF69B4] text-center text-4xl font-extrabold text-balance m-2.5">
+            <p className="text-[#dfeaeb] text-center text-4xl font-extrabold text-balance m-2.5">
               {progress} %
             </p>
             <div className="w-[50vw] max-w-[600px]">

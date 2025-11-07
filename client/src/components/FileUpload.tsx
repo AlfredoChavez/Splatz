@@ -14,8 +14,6 @@ export interface FileData {
   data: string;
 }
 
-
-
 function FileUpload({ onFileUpload }: FileUploadProps) {
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
