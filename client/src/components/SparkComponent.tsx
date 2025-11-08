@@ -3,7 +3,7 @@ import {Canvas} from '@react-three/fiber';
 import { Progress } from './ui/Progress';
 import { useLocation } from 'react-router';
 import SplatScene_Reveal from './SplatScene_Reveal';
-import Dock from './Dock';
+import Dock from './ui/Dock';
 import { FaHome, FaKeyboard } from 'react-icons/fa';
 import { useNavigate } from 'react-router';
 
@@ -24,7 +24,7 @@ function SparkComponent() {
 
   const items = [
     { icon: <FaHome className='fill-white' size={18} />, label: 'Home', onClick: () => navigate('/') },
-    //TODO Add Controls Button that displays Keyboard and Mouse controls
+    //TODO Add Controls Button that displays Keyboard and Mouse controls (use GlassSurface as Background?)
     { icon: <FaKeyboard className='fill-white' size={18} />, label: 'Controls', onClick: () => alert('Controls') },
   ];
 
