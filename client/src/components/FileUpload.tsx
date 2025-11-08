@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router';
-import Folder from './Folder';
+import Folder from './ui/Folder';
 
 type FileUploadProps = {
   onFileUpload?: (fileData: FileData) => void;

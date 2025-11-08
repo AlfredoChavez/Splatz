@@ -3,6 +3,10 @@ import {Canvas} from '@react-three/fiber';
 import { Progress } from './ui/Progress';
 import { useLocation } from 'react-router';
 import SplatScene_Reveal from './SplatScene_Reveal';
+import Dock from './Dock';
+import { FaHome } from 'react-icons/fa';
+// import { FaKeyboard } from 'react-icons/fa';
+import { useNavigate } from 'react-router';
 
 function SparkComponent() {
   //* I need to keep track of the loading progress with these states
@@ -17,7 +21,14 @@ function SparkComponent() {
     setSplatURL(fileURL);
   }, [fileURL]);
 
-  //TODO Add Home Button to go back to the splash screen
+  const navigate = useNavigate();
+
+  const items = [
+    { icon: <FaHome size={18} />, label: 'Home', onClick: () => navigate('/') },
+    //TODO Add Controls Button that displays Keyboard and Mouse controls
+    // { icon: <FaKeyboard size={18} />, label: 'Controls', onClick: () => alert('Controls') },
+  ];
+
   //* Splats do not need the light component as it is 'embedded' into them so we do not add it to the canvas
   return (
     <div className='flex-1 h-full bg-[rgb(43,41,40)] overflow-hidden relative'>
@@ -33,7 +44,14 @@ function SparkComponent() {
           </div>
         </div>
       }
-
+      <div className='absolute inset-x-0 bottom-0 z-50'>
+        <Dock
+          items={items}
+          panelHeight={68}
+          baseItemSize={50}
+          magnification={70}
+        />
+      </div>
       <Canvas
         // https://threejs.org/docs/#PerspectiveCamera
         camera={{ position: [0, 0, 1], fov: 75, near: 0.01, far: 1000 }}
