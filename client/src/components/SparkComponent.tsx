@@ -4,8 +4,7 @@ import { Progress } from './ui/Progress';
 import { useLocation } from 'react-router';
 import SplatScene_Reveal from './SplatScene_Reveal';
 import Dock from './Dock';
-import { FaHome } from 'react-icons/fa';
-// import { FaKeyboard } from 'react-icons/fa';
+import { FaHome, FaKeyboard } from 'react-icons/fa';
 import { useNavigate } from 'react-router';
 
 function SparkComponent() {
@@ -26,7 +25,7 @@ function SparkComponent() {
   const items = [
     { icon: <FaHome className='fill-white' size={18} />, label: 'Home', onClick: () => navigate('/') },
     //TODO Add Controls Button that displays Keyboard and Mouse controls
-    // { icon: <FaKeyboard className='fill-white' size={18} />, label: 'Controls', onClick: () => alert('Controls') },
+    { icon: <FaKeyboard className='fill-white' size={18} />, label: 'Controls', onClick: () => alert('Controls') },
   ];
 
   //* Splats do not need the light component as it is 'embedded' into them so we do not add it to the canvas
