@@ -9,7 +9,9 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
-    svgr(),
+    svgr({
+      include: '**/*.svg?react',
+    }),
   ],
   resolve: {
     alias: {

@@ -6,6 +6,7 @@ import SplatScene_Reveal from './SplatScene_Reveal';
 import Dock from './ui/Dock';
 import { FaHome, FaKeyboard } from 'react-icons/fa';
 import { useNavigate } from 'react-router';
+import Instructions from './ui/Instructions/Instructions';
 
 function SparkComponent() {
   //* I need to keep track of the loading progress with these states
@@ -45,6 +46,7 @@ function SparkComponent() {
       }
       {!loading &&
         <div className='absolute inset-x-0 bottom-0 z-50'>
+          <Instructions></Instructions>
           <Dock
             items={items}
             panelHeight={68}

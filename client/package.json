@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@radix-ui/react-progress": "^1.1.8",
+    "@radix-ui/react-tooltip": "^1.2.8",
     "@react-three/fiber": "^9.4.0",
     "@sparkjsdev/spark": "^0.1.10",
     "@tailwindcss/vite": "^4.1.16",
