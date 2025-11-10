@@ -12,7 +12,7 @@ function Instructions() {
 
   return (
     <>
-      <div className='z-0 pointer-events-none'>
+      <div className='z-10 pointer-events-none'>
         <GlassSurface
           height={500}
           width={500}
@@ -34,7 +34,7 @@ function Instructions() {
                 <Tooltip>
                   <TooltipTrigger>
                     <MouseIcon
-                      className='h-25 w-auto transition-transform duration-300 shrink-0 pointer-events-auto hover:animate-scale-in-out z-20'
+                      className='h-25 w-auto transition-transform duration-300 shrink-0 pointer-events-auto hover:animate-spin z-20'
                     />
                   </TooltipTrigger>
                   <TooltipContent>

@@ -89,7 +89,7 @@ function SplatScene_Reveal({splatURL, setLoading, setProgress}: SplatSceneProps)
 
       splatMesh.updateGenerator();
     } catch (err) {
-      console.error('Failed to setup magic effect:', err);
+      console.error('Failed to setup magic effect 🪄:', err);
     }
   };
 
