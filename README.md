@@ -25,3 +25,47 @@ Built with **React**, **Three.js**, and **React Three Fiber**, Splatz offers a l
 - 🧩 React Three Fiber (Three.js for React)
 - 💥 Sparkjs.dev for Gaussian Splat loading & utilities
 - 🎨 Tailwind CSS, Shadcn UI and React Bits for styling
+
+## Installation & First Steps
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/AlfredoChavez/Splatz.git
+cd Splatz
+```
+
+### 2. Install dependencies
+
+Make sure you have [Node.js](https://nodejs.org/) and npm installed.
+Then run:
+
+```bash
+npm install
+```
+
+This will install the necessary dependencies.
+
+### 3. Start the development server
+
+```bash
+npm run dev
+```
+
+Open your browser and navigate to the address shown in the console (e.g., `http://localhost:5173`) to view the project.
+
+### 4. Explore the project
+
+* The source code is located under `src/`.
+* Since this uses TypeScript, you’ll find `.ts` / `.tsx` files.
+* To test changes: modify components, save, and Vite’s hot‑reload will update the browser.
+* To view how the Gaussian splats upload/viewer works, check the relevant components under the `client` folder.
+* For styling the UI, the project uses Tailwind CSS, Shadcn UI and ReactBits.
+
+### 5. Build for production
+
+```bash
+npm run build
+```
+
+This bundles the app for production.
