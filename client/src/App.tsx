@@ -8,7 +8,7 @@ function App() {
 
   return (
     <>
-      <div className='pageBody'>
+      <div className='page-body'>
         <Routes>
           <Route path="/" element={
             <SplashScreen/>

@@ -122,7 +122,8 @@ function SplatScene_Reveal({splatURL, setLoading, setProgress}: SplatSceneProps)
 
       } catch (error) {
         console.error('🚨 Error mounting the Splat:', error);
-        navigate(-1);
+        //* The second argument passing replace:true does not allow the user to go back the previous page using the Back button.
+        navigate('/', { replace: true });
       } finally {
         setLoading(false);
         setProgress(0);
