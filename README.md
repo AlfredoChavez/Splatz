@@ -69,3 +69,7 @@ npm run build
 ```
 
 This bundles the app for production.
+
+## Linting & Code Style
+
+This project uses ESLint for linting and code‑style enforcement.
