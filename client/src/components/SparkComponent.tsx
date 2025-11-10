@@ -16,16 +16,30 @@ function SparkComponent() {
   const [displayInstruction, setDisplayInstructions] = useState(false);
 
   const location = useLocation();
-  const fileURL = location.state.file.url;
-
-  useEffect(()=>{
-    setSplatURL(fileURL);
-  }, [fileURL]);
-
   const navigate = useNavigate();
 
+  //* Redirect to splash screen if no file data is available (e.g., direct navigation or page reload)
+  useEffect(() => {
+    if (!location.state?.file?.url) {
+      navigate('/', { replace: true });
+      return;
+    }
+  }, [location.state, navigate]);
+
+  //* Only set splatURL if file data exists
+  useEffect(() => {
+    if (location.state?.file?.url) {
+      setSplatURL(location.state.file.url);
+    }
+  }, [location.state]);
+
+  //* Don't render if no file data is available (redirect will happen)
+  if (!location.state?.file?.url) {
+    return null;
+  }
+
   const items = [
-    { icon: <FaHome className='fill-white' size={18} />, label: 'Home', onClick: () => navigate('/') },
+    { icon: <FaHome className='fill-white' size={18} />, label: 'Home', onClick: () => navigate('/', { replace: true }) },
     { icon: <FaKeyboard className='fill-white' size={18} />, label: 'Controls', onClick: () => setDisplayInstructions(!displayInstruction) },
   ];
 
