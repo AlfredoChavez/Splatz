@@ -13,6 +13,7 @@ function SparkComponent() {
   const [progress, setProgress] = useState(0);
   const [loading, setLoading] = useState(false);
   const [splatURL, setSplatURL] = useState('');
+  const [displayInstruction, setDisplayInstructions] = useState(false);
 
   const location = useLocation();
   const fileURL = location.state.file.url;
@@ -25,8 +26,7 @@ function SparkComponent() {
 
   const items = [
     { icon: <FaHome className='fill-white' size={18} />, label: 'Home', onClick: () => navigate('/') },
-    //TODO Add Controls Button that displays Keyboard and Mouse controls (use GlassSurface as Background?)
-    { icon: <FaKeyboard className='fill-white' size={18} />, label: 'Controls', onClick: () => alert('Controls') },
+    { icon: <FaKeyboard className='fill-white' size={18} />, label: 'Controls', onClick: () => setDisplayInstructions(!displayInstruction) },
   ];
 
   //* Splats do not need the light component as it is 'embedded' into them so we do not add it to the canvas
@@ -47,9 +47,11 @@ function SparkComponent() {
         }
         {!loading &&
           <>
+            {displayInstruction &&
             <div className='absolute inset-0 z-40 flex items-center justify-center pointer-events-none'>
               <Instructions></Instructions>
             </div>
+            }
             <div className='absolute inset-x-0 bottom-0 z-50 flex items-center justify-center'>
               <Dock
                 items={items}
