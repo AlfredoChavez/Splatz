@@ -1,3 +1,4 @@
+//! QE, RF and ZX could be potentially refactored into a single .tsx accepting the two elements as inputs.
 import RIcon from '@/../../resources/Instructions_R.svg?react';
 import FIcon from '@/../../resources/Instructions_F.svg?react';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/Tooltip';
@@ -6,8 +7,8 @@ function RF() {
 
   return (
     <>
-      <div>
-        <div>
+      <div className='flex flex-col justify-center pointer-events-none'>
+        <div className='pointer-events-none'>
           <Tooltip>
             <TooltipTrigger>
               <RIcon
@@ -15,11 +16,11 @@ function RF() {
               />
             </TooltipTrigger>
             <TooltipContent>
-              <p>Camera Pitch Up</p>
+              <p>Camera Tilt Up</p>
             </TooltipContent>
           </Tooltip>
         </div>
-        <div>
+        <div className='pointer-events-none'>
           <Tooltip>
             <TooltipTrigger>
               <FIcon
@@ -27,7 +28,7 @@ function RF() {
               />
             </TooltipTrigger>
             <TooltipContent>
-              <p>Camera Pitch Down</p>
+              <p>Camera Tilt Down</p>
             </TooltipContent>
           </Tooltip>
         </div>
