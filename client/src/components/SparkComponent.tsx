@@ -33,6 +33,17 @@ function SparkComponent() {
     }
   }, [location.state]);
 
+  //* Handle Escape key to close instructions
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setDisplayInstructions(false);
+      }
+    };
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, []);
+
   //* Don't render if no file data is available (redirect will happen)
   if (!location.state?.file?.url) {
     return null;
