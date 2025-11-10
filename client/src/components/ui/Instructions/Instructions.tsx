@@ -6,7 +6,7 @@ import RF from './RF';
 import QE from './QE';
 import ZX from './ZX';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/Tooltip';
-import GlassSurface from '@/components/GlassSurface';
+import GlassSurface from '@/components/ui/GlassSurface';
 
 function Instructions() {
 
