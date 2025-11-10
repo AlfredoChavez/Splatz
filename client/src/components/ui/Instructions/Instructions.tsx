@@ -61,6 +61,7 @@ function Instructions() {
             <div className='pointer-events-none'>
               <ZX/>
             </div>
+            <p className='text-center text-white text-sm mt-15'><u><strong>*Hover</strong></u> over the icons to see the controls or press<u><strong> Escape </strong></u> to close</p>
           </div>
         </GlassSurface>
       </div>

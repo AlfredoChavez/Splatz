@@ -85,6 +85,11 @@ function SparkComponent() {
                 magnification={70}
               />
             </div>
+            <div className='fixed bottom-14 right-14 z-30 pointer-events-auto'>
+              <p className='text-white text-sm'>
+                <span className='font-bold'>Alfredo Chavez</span>, 2025
+              </p>
+            </div>
           </>
         }
         <Canvas
