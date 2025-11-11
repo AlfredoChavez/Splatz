@@ -1,5 +1,5 @@
 import MetaBalls from './ui/MetaBalls/MetaBalls';
-import SplatzLogo from '@/../../resources/Splatz_Logo.png';
+import SplatzLogo from '@/assets/Splatz_Logo.png';
 import FileUpload from './FileUpload';
 import { FaGithub } from 'react-icons/fa';
 import DarkModeToggle from './ui/DarkModeToggle';

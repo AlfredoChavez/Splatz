@@ -1,7 +1,7 @@
 //* I am bringing the icons as react components from svg using the svg vite plugin. This provides me with better control over the elements
 //! It is important to modify vite config and include TS declarations for the vite svg module
-import MouseIcon from '@/../../resources/Instructions_Mouse.svg?react';
-import WASDIcon from '@/../../resources/Instructions_WASD.svg?react';
+import MouseIcon from '@/assets/Instructions_Mouse.svg?react';
+import WASDIcon from '@/assets/Instructions_WASD.svg?react';
 import RF from './RF';
 import QE from './QE';
 import ZX from './ZX';

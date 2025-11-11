@@ -1,6 +1,6 @@
 //! QE, RF and ZX could be potentially refactored into a single .tsx accepting the two elements as inputs.
-import QIcon from '@/../../resources/Instructions_Q.svg?react';
-import EIcon from '@/../../resources/Instructions_E.svg?react';
+import QIcon from '@/assets/Instructions_Q.svg?react';
+import EIcon from '@/assets/Instructions_E.svg?react';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/Tooltip';
 
 function QE() {
