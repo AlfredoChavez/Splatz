@@ -1,6 +1,6 @@
 # 🫟 Splatz
 
-![alt text](https://github.com/AlfredoChavez/Splatz/raw/main/resources/Splatz_Logo.png)
+![alt text](https://github.com/AlfredoChavez/Splatz/raw/main/client/src/assets/Splatz_Logo.png)
 
 **Interactive Gaussian Splats in React**
 
