@@ -110,7 +110,7 @@ Special thanks to:
 - The open-source community
 - Libraries and frameworks that power this project
 
----
+## 🚀 Splatz Live: [View on GitHub Pages](https://alfredochavez.github.io/Splatz/)
 
 Thanks for checking out **Splatz**!
 
