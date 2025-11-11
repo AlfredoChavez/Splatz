@@ -11,7 +11,7 @@ import Instructions from './ui/Instructions/Instructions';
 function SparkComponent() {
   //* I need to keep track of the loading progress with these states
   const [progress, setProgress] = useState(0);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [splatURL, setSplatURL] = useState('');
   const [displayInstruction, setDisplayInstructions] = useState(false);
 
