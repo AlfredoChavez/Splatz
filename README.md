@@ -113,4 +113,5 @@ Special thanks to:
 ---
 
 Thanks for checking out **Splatz**!
+
 If you find it useful, consider giving it a ⭐ on GitHub, it helps more people discover the project.
