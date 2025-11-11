@@ -18,5 +18,6 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  base: '/',
+  // Set to your repository name for GitHub Pages
+  base: '/Splatz/',
 });
