@@ -13,10 +13,10 @@ Built with **React**, **Three.js**, and **React Three Fiber**, Splatz offers a l
 
 ## Features
 
-- **Upload & View Splats:** Instantly load `.ply` or compatible Gaussian Splat files in the browser.
-- **Interactive 3D Navigation:** Pan, zoom, and rotate your splats with smooth rendering.
 - **Embed Anywhere:** Easily embed the 3D Splat viewer in any React project.
 - **Powered by Sparkjs.dev & React Three Fiber:** Declarative, fast, and extensible.
+- **Interactive 3D Navigation:** Pan, zoom, and rotate your splats with smooth rendering.
+- **Upload & View Splats:** Instantly load `.ply, .sogs, .spz, .splat, .ksplat` or compatible Gaussian Splat files in the browser.
 
 ## Tech Stack
 
@@ -111,9 +111,9 @@ Special thanks to:
 - Libraries and frameworks that power this project
 
 ## 🚀 Splatz Live: [View on GitHub Pages](https://alfredochavez.github.io/Splatz/)
-If you need a model to test **Splatz**, grab one below:
+Looking for a quick model to play with Splatz? Get it below:
 
-👉 [Sample Model](https://github.com/AlfredoChavez/Splatz/raw/main/client/sample/Wax_Hand.ply)
+✌️ [Sample Model](https://github.com/AlfredoChavez/Splatz/raw/main/client/sample/Wax_Hand.ply)
 
 ##
 
