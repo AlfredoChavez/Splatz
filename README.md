@@ -111,6 +111,11 @@ Special thanks to:
 - Libraries and frameworks that power this project
 
 ## 🚀 Splatz Live: [View on GitHub Pages](https://alfredochavez.github.io/Splatz/)
+If you need a model to test **Splatz**, grab one below:
+
+👉 [Sample Model](https://github.com/AlfredoChavez/Splatz/raw/main/client/sample/Wax_Hand.ply)
+
+##
 
 Thanks for checking out **Splatz**!
 
