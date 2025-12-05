@@ -106,7 +106,6 @@ This bundles the app for production.
 ## 🙏 Acknowledgments
 
 Special thanks to:
-- Codeworks
 - The open-source community
 - Libraries and frameworks that power this project
 
