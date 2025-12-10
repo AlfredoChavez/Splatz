@@ -122,7 +122,8 @@ function SplatScene_Reveal({splatURL, setLoading, setProgress, setSplatCenter, j
         const bbox = splatMesh.getBoundingBox(true);
         const center = bbox.getCenter(new THREE.Vector3());
         setSplatCenter(center);
-        console.log('Splat center 🎯:', center);
+        //! Only log this in development
+        // console.log('Splat center 🎯:', center);
 
         setSplatLoaded(true);
         baseTime.current = 0;

@@ -2,9 +2,9 @@ import { useRef, useState, useEffect } from 'react';
 
 type JoystickProps = {
   onMove: (data: { x: number; y: number }) => void;
-  /** Size of the base in pixels. Default 100 */
+  //* Size of the base in pixels. Default 100
   size?: number;
-  /** Size of the sticky knob in pixels. Default 50 */
+  //* Size of the sticky knob in pixels. Default 50
   knobSize?: number;
 };
 
@@ -13,7 +13,7 @@ export default function Joystick({ onMove, size = 100, knobSize = 50 }: Joystick
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [active, setActive] = useState(false);
 
-  // Center coordinate of the knob relative to the container center
+  //* Center coordinate of the knob relative to the container center
   const maxDistance = size / 2;
 
   const updatePosition = (clientX: number, clientY: number) => {
@@ -27,7 +27,7 @@ export default function Joystick({ onMove, size = 100, knobSize = 50 }: Joystick
     const dy = clientY - centerY;
     const distance = Math.sqrt(dx * dx + dy * dy);
 
-    // Clamp distance to max radius
+    //* Clamp distance to max radius
     const clampedDistance = Math.min(distance, maxDistance);
     const angle = Math.atan2(dy, dx);
 
@@ -36,9 +36,9 @@ export default function Joystick({ onMove, size = 100, knobSize = 50 }: Joystick
 
     setPosition({ x, y });
 
-    // Normalize output -1 to 1
-    // y is inverted in screen coordinates (down is positive), but usually for games up is positive Y or Z forward
-    // Let's standardise: x right is positive 1, y down is positive 1. Consumer handles logic.
+    //* Normalize output -1 to 1
+    //* y is inverted in screen coordinates (down is positive), but usually for games up is positive Y or Z forward
+    //* Let's standardise: x right is positive 1, y down is positive 1. Consumer handles logic.
     onMove({
       x: x / maxDistance,
       y: y / maxDistance,
@@ -46,7 +46,7 @@ export default function Joystick({ onMove, size = 100, knobSize = 50 }: Joystick
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    e.stopPropagation(); // Prevent camera look behavior
+    e.stopPropagation();
     setActive(true);
     updatePosition(e.touches[0].clientX, e.touches[0].clientY);
   };
@@ -64,7 +64,7 @@ export default function Joystick({ onMove, size = 100, knobSize = 50 }: Joystick
     onMove({ x: 0, y: 0 });
   };
 
-  // Prevent default behaviours to avoid scrolling while using joystick
+  //* Prevent default behaviours to avoid scrolling while using joystick
   useEffect(() => {
     const el = wrapperRef.current;
     if(!el) return;
