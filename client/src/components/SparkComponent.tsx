@@ -61,13 +61,13 @@ function SparkComponent() {
 
   const items = [
     { icon: <FaHome className='fill-white' size={18} />, label: 'Home', onClick: () => navigate('/', { replace: true }) },
-    { icon: <FaKeyboard className='fill-white' size={18} />, label: 'Controls', onClick: () => setDisplayInstructions(!displayInstruction) },
+    ...(!isTouchDevice ? [{ icon: <FaKeyboard className='fill-white' size={18} />, label: 'Controls', onClick: () => setDisplayInstructions(!displayInstruction) }] : []),
   ];
 
   //* Splats do not need the light component as it is 'embedded' into them so we do not add it to the canvas
   return (
     <>
-      <div className='flex-1 h-full bg-[rgb(43,41,40)] overflow-hidden relative'>
+      <div className='flex-1 h-dvh bg-[rgb(43,41,40)] overflow-hidden relative pb-safe'>
         {loading &&
           <div className='absolute inset-0 flex items-center justify-center'>
             <div className='flex flex-col'>
@@ -84,10 +84,12 @@ function SparkComponent() {
           <>
             {displayInstruction &&
             <div className='absolute inset-0 z-40 flex items-center justify-center pointer-events-none'>
-              <Instructions></Instructions>
+              <div className='origin-center transition-transform duration-300 scale-[min(1,calc(100vw/550))] -translate-y-14'>
+                <Instructions></Instructions>
+              </div>
             </div>
             }
-            <div className='absolute inset-x-0 bottom-0 z-50 flex items-center justify-center'>
+            <div className='absolute inset-x-0 bottom-4 z-50 flex items-center justify-center pb-safe'>
               <Dock
                 items={items}
                 panelHeight={68}
@@ -95,13 +97,15 @@ function SparkComponent() {
                 magnification={70}
               />
             </div>
-            <div className='fixed bottom-14 right-14 z-30 pointer-events-auto'>
+            <div className='fixed bottom-14 right-14 z-30 pointer-events-auto pb-safe pr-safe hidden md:block'>
               <p className='text-white text-sm'>
                 <span className='font-bold'>Alfredo Chavez</span>, 2025
               </p>
             </div>
             {isTouchDevice &&
-              <Joystick onMove={handleJoystickMove} />
+              <div className="absolute bottom-28 left-8 pb-safe pl-safe z-50">
+                <Joystick onMove={handleJoystickMove} />
+              </div>
             }
           </>
         }

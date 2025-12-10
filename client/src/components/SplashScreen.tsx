@@ -18,7 +18,7 @@ function SplashScreen() {
           alt='Splatz Logo'
         />
 
-        <div className='fixed bottom-14 right-14 z-30 pointer-events-auto'>
+        <div className='fixed bottom-18 right-14 z-30 pointer-events-auto'>
           <DarkModeToggle
             scale={1}
             isDark = {isDark}
