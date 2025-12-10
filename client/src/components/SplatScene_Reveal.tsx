@@ -11,9 +11,10 @@ type SplatSceneProps = {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
   setSplatCenter: React.Dispatch<React.SetStateAction<{ x: number; y: number; z: number }>>
   joystickRef?: { current: { x: number; y: number } }
+  joystickLookRef?: { current: { x: number; y: number } }
 };
 
-function SplatScene_Reveal({splatURL, setLoading, setProgress, setSplatCenter, joystickRef}: SplatSceneProps) {
+function SplatScene_Reveal({splatURL, setLoading, setProgress, setSplatCenter, joystickRef, joystickLookRef}: SplatSceneProps) {
 
   //* I need a reference to the splat so I keep the splat constant between frames
   const splatRef = useRef <SplatMesh | null> (null);
@@ -162,54 +163,6 @@ function SplatScene_Reveal({splatURL, setLoading, setProgress, setSplatCenter, j
   const isTouchDevice = useMemo(() => 'ontouchstart' in window || navigator.maxTouchPoints > 0, []);
 
   // Touch Look Logic inside the scene
-  useEffect(() => {
-    if (!isTouchDevice) return;
-
-    const canvas = gl.domElement;
-    let lastTouchX = 0;
-    let lastTouchY = 0;
-
-    const onTouchStart = (e: TouchEvent) => {
-      // If we touch the canvas, we are "looking".
-      if (e.touches.length > 0) {
-        lastTouchX = e.touches[0].clientX;
-        lastTouchY = e.touches[0].clientY;
-      }
-    };
-
-    const onTouchMove = (e: TouchEvent) => {
-      if (e.touches.length === 0) return;
-
-      const touchReceived = e.touches[0];
-
-      const deltaX = touchReceived.clientX - lastTouchX;
-      const deltaY = touchReceived.clientY - lastTouchY;
-
-      lastTouchX = touchReceived.clientX;
-      lastTouchY = touchReceived.clientY;
-
-      const sensitivity = 0.005;
-
-      // Yaw (left/right) - Rotate around world Y
-      camera.rotation.y -= deltaX * sensitivity;
-
-      // Pitch (up/down) - Rotate around local X, clamped?
-      camera.rotation.x -= deltaY * sensitivity;
-
-      // Clamp pitch to avoid flipping
-      camera.rotation.x = Math.max(-Math.PI / 2 + 0.1, Math.min(Math.PI / 2 - 0.1, camera.rotation.x));
-
-      camera.updateProjectionMatrix();
-    };
-
-    canvas.addEventListener('touchstart', onTouchStart, { passive: false });
-    canvas.addEventListener('touchmove', onTouchMove, { passive: false });
-
-    return () => {
-      canvas.removeEventListener('touchstart', onTouchStart);
-      canvas.removeEventListener('touchmove', onTouchMove);
-    };
-  }, [gl.domElement, camera, isTouchDevice]);
 
   //* If we have a renderer, we have to set up the controls
   useEffect(()=>{
@@ -263,6 +216,24 @@ function SplatScene_Reveal({splatURL, setLoading, setProgress, setSplatCenter, j
 
       // Move right magnitude based on joystick X
       camera.position.addScaledVector(right, moveX * speed);
+    }
+
+    // Apply Joystick Look from ref
+    if (isTouchDevice && joystickLookRef && (joystickLookRef.current.x !== 0 || joystickLookRef.current.y !== 0)) {
+      const lookSpeed = 2.0 * delta; // Adjust sensitivity
+
+      // Yaw (left/right) - Rotate around world Y
+      // joystick x > 0 means stick right -> camera turn right -> rot y negative
+      camera.rotation.y -= joystickLookRef.current.x * lookSpeed;
+
+      // Pitch (up/down)
+      // joystick y > 0 means stick down -> camera look down -> rot x negative
+      // joystick y < 0 means stick up -> camera look up -> rot x positive
+      // Stick down (positive y) -> should look down -> subtract.
+      camera.rotation.x -= joystickLookRef.current.y * lookSpeed;
+
+      // Clamp pitch to avoid flipping
+      camera.rotation.x = Math.max(-Math.PI / 2 + 0.1, Math.min(Math.PI / 2 - 0.1, camera.rotation.x));
     }
 
     if(splatLoaded && splatRef.current) {

@@ -6,9 +6,11 @@ type JoystickProps = {
   size?: number;
   //* Size of the sticky knob in pixels. Default 50
   knobSize?: number;
+  //* Optional class name for positioning or styling
+  className?: string;
 };
 
-export default function Joystick({ onMove, size = 100, knobSize = 50 }: JoystickProps) {
+export default function Joystick({ onMove, size = 100, knobSize = 50, className = '' }: JoystickProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [active, setActive] = useState(false);
@@ -76,7 +78,7 @@ export default function Joystick({ onMove, size = 100, knobSize = 50 }: Joystick
   return (
     <div
       ref={wrapperRef}
-      className='absolute bottom-8 left-8 z-50 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 touch-none select-none'
+      className={`absolute z-50 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 touch-none select-none ${className}`}
       style={{
         width: size,
         height: size,

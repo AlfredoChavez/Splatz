@@ -22,10 +22,15 @@ function SparkComponent() {
 
   // Create a ref for joystick movement to pass down to the scene
   const joystickRef = useRef({ x: 0, y: 0 });
+  const joystickLookRef = useRef({ x: 0, y: 0 });
   const isTouchDevice = useMemo(() => 'ontouchstart' in window || navigator.maxTouchPoints > 0, []);
 
   const handleJoystickMove = (pos: { x: number; y: number }) => {
     joystickRef.current = pos;
+  };
+
+  const handleJoystickLook = (pos: { x: number; y: number }) => {
+    joystickLookRef.current = pos;
   };
 
   //* Redirect to splash screen if no file data is available (e.g., direct navigation or page reload)
@@ -103,9 +108,10 @@ function SparkComponent() {
               </p>
             </div>
             {isTouchDevice &&
-              <div className="absolute bottom-28 left-8 pb-safe pl-safe z-50">
-                <Joystick onMove={handleJoystickMove} />
-              </div>
+              <>
+                <Joystick onMove={handleJoystickMove} className="bottom-28 left-8" />
+                <Joystick onMove={handleJoystickLook} className="bottom-28 right-8" />
+              </>
             }
           </>
         }
@@ -125,6 +131,7 @@ function SparkComponent() {
             setProgress = {setProgress}
             setSplatCenter={setSplatCenter}
             joystickRef={joystickRef}
+            joystickLookRef={joystickLookRef}
           />
         </Canvas>
       </div>
