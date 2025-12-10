@@ -18,6 +18,8 @@ export default function Joystick({ onMove, size = 100, knobSize = 50, className 
   //* Center coordinate of the knob relative to the container center
   const maxDistance = size / 2;
 
+  const touchId = useRef<number | null>(null);
+
   const updatePosition = (clientX: number, clientY: number) => {
     if (!wrapperRef.current) return;
 
@@ -49,21 +51,41 @@ export default function Joystick({ onMove, size = 100, knobSize = 50, className 
 
   const handleTouchStart = (e: React.TouchEvent) => {
     e.stopPropagation();
+    // Only capture the first touch that lands on this element if we aren't already active
+    if (active) return;
+
+    const touch = e.changedTouches[0];
+    touchId.current = touch.identifier;
     setActive(true);
-    updatePosition(e.touches[0].clientX, e.touches[0].clientY);
+    updatePosition(touch.clientX, touch.clientY);
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
     e.stopPropagation();
-    if (!active) return;
-    updatePosition(e.touches[0].clientX, e.touches[0].clientY);
+    if (!active || touchId.current === null) return;
+
+    // Find our specific touch
+    for (let i = 0; i < e.changedTouches.length; i++) {
+      if (e.changedTouches[i].identifier === touchId.current) {
+        updatePosition(e.changedTouches[i].clientX, e.changedTouches[i].clientY);
+        break;
+      }
+    }
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
     e.stopPropagation();
-    setActive(false);
-    setPosition({ x: 0, y: 0 });
-    onMove({ x: 0, y: 0 });
+    if (!active || touchId.current === null) return;
+
+    for (let i = 0; i < e.changedTouches.length; i++) {
+      if (e.changedTouches[i].identifier === touchId.current) {
+        setActive(false);
+        touchId.current = null;
+        setPosition({ x: 0, y: 0 });
+        onMove({ x: 0, y: 0 });
+        break;
+      }
+    }
   };
 
   //* Prevent default behaviours to avoid scrolling while using joystick
