@@ -20,7 +20,7 @@ function SparkComponent() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Create a ref for joystick movement to pass down to the scene
+  //* Create a ref for joystick movement to pass down to the scene
   const joystickRef = useRef({ x: 0, y: 0 });
   const joystickLookRef = useRef({ x: 0, y: 0 });
   const isTouchDevice = useMemo(() => 'ontouchstart' in window || navigator.maxTouchPoints > 0, []);

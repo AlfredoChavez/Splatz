@@ -64,7 +64,7 @@ export default function Joystick({ onMove, size = 100, knobSize = 50, className 
     e.stopPropagation();
     if (!active || touchId.current === null) return;
 
-    // Find our specific touch
+    //* Find our specific touch
     for (let i = 0; i < e.changedTouches.length; i++) {
       if (e.changedTouches[i].identifier === touchId.current) {
         updatePosition(e.changedTouches[i].clientX, e.changedTouches[i].clientY);
@@ -117,8 +117,8 @@ export default function Joystick({ onMove, size = 100, knobSize = 50, className 
           height: knobSize,
           left: '50%',
           top: '50%',
-          // transform: `translate(-50%, -50%) translate(${position.x}px, ${position.y}px)`,
-          // Using margin to center then translate
+          //* transform: `translate(-50%, -50%) translate(${position.x}px, ${position.y}px)`,
+          //* Using margin to center then translate
           marginLeft: -knobSize / 2,
           marginTop: -knobSize / 2,
           transform: `translate(${position.x}px, ${position.y}px)`,

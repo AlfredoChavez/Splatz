@@ -197,46 +197,40 @@ function SplatScene_Reveal({splatURL, setLoading, setProgress, setSplatCenter, j
     if(fpsMovementRef.current) fpsMovementRef.current.update(delta, camera);
     if(pointerControlsRef.current) pointerControlsRef.current.update(delta, camera);
 
-    // Apply Joystick Movement from ref
+    //* Apply Joystick Movement from ref
     if (isTouchDevice && joystickRef && (joystickRef.current.x !== 0 || joystickRef.current.y !== 0)) {
-      const speed = 5.0 * delta; // Adjust speed as necessary
+      const speed = 5.0 * delta;
       const forward = new THREE.Vector3(0, 0, -1).applyQuaternion(camera.quaternion);
       const right = new THREE.Vector3(1, 0, 0).applyQuaternion(camera.quaternion);
 
-      // Flatten vectors to XZ plane for "walking" behavior
-      forward.y = 0;
-      forward.normalize();
-      right.y = 0;
-      right.normalize();
+      const moveZ = joystickRef.current.y;
+      const moveX = joystickRef.current.x;
 
-      const moveZ = joystickRef.current.y; // Negative when up (from joystick)
-      const moveX = joystickRef.current.x; // Positive when right
-
-      // Move forward magnitude based on joystick Y (inverted logic: Up(neg) -> Forward)
+      //* Move forward magnitude based on joystick Y (inverted logic: Up(neg) -> Forward)
       camera.position.addScaledVector(forward, -moveZ * speed);
 
-      // Move right magnitude based on joystick X
+      //* Move right magnitude based on joystick X
       camera.position.addScaledVector(right, moveX * speed);
     }
 
-    // Apply Joystick Look from ref
+    //* Apply Joystick Look from ref
     if (isTouchDevice && joystickLookRef && (joystickLookRef.current.x !== 0 || joystickLookRef.current.y !== 0)) {
-      const lookSpeed = 2.0 * delta; // Adjust sensitivity
+      const lookSpeed = 2.0 * delta;
 
-      // Yaw (left/right) - Rotate around world Y
-      // joystick x > 0 means stick right -> camera turn right -> rot y negative
+      //* Yaw (left/right) - Rotate around world Y
+      //* joystick x > 0 means stick right -> camera turn right -> rot y negative
       camera.rotation.y -= joystickLookRef.current.x * lookSpeed;
 
-      // Pitch (up/down)
-      // joystick y > 0 means stick down -> camera look down -> rot x negative
-      // joystick y < 0 means stick up -> camera look up -> rot x positive
-      // Stick down (positive y) -> should look down -> subtract.
+      //* Pitch (up/down)
+      //* joystick y > 0 means stick down -> camera look down -> rot x negative
+      //* joystick y < 0 means stick up -> camera look up -> rot x positive
+      //* Stick down (positive y) -> should look down -> subtract.
       camera.rotation.x -= joystickLookRef.current.y * lookSpeed;
 
-      // Clamp pitch to avoid flipping
+      //* Clamp pitch to avoid flipping
       camera.rotation.x = Math.max(-Math.PI / 2 + 0.1, Math.min(Math.PI / 2 - 0.1, camera.rotation.x));
 
-      // Prevent roll
+      //* Prevent roll
       camera.rotation.z = 0;
     }
 
