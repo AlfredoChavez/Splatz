@@ -188,7 +188,8 @@ function SplatScene_Reveal({splatURL, setLoading, setProgress, setSplatCenter, j
     fpsMovementRef.current = new FpsMovement({keycodeMoveMapping:movementMapping, keycodeRotateMapping:rotateMapping});
     const canvas = gl.domElement;
     pointerControlsRef.current = new PointerControls({canvas});
-  }, [gl]);
+    camera.rotation.order = 'YXZ';
+  }, [gl, camera]);
 
   //* Manage what happens in every frame
   //* The first argument is the state but we can neatly avoid the TS issue by using the '_' placeholder for unnused variable
@@ -234,6 +235,9 @@ function SplatScene_Reveal({splatURL, setLoading, setProgress, setSplatCenter, j
 
       // Clamp pitch to avoid flipping
       camera.rotation.x = Math.max(-Math.PI / 2 + 0.1, Math.min(Math.PI / 2 - 0.1, camera.rotation.x));
+
+      // Prevent roll
+      camera.rotation.z = 0;
     }
 
     if(splatLoaded && splatRef.current) {
