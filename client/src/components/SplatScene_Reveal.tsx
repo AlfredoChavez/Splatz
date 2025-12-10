@@ -123,7 +123,7 @@ function SplatScene_Reveal({splatURL, setLoading, setProgress, setSplatCenter, j
         const bbox = splatMesh.getBoundingBox(true);
         const center = bbox.getCenter(new THREE.Vector3());
         setSplatCenter(center);
-        //! Only log this in development
+        //! Only log this in development.
         // console.log('Splat center 🎯:', center);
 
         setSplatLoaded(true);
@@ -138,7 +138,7 @@ function SplatScene_Reveal({splatURL, setLoading, setProgress, setSplatCenter, j
         setLoading(false);
         setProgress(0);
         URL.revokeObjectURL(splatURL);
-        //! Only log this in development
+        //! Only log this in development.
         // console.log(`Revoked temporary URL: ${splatURL} 🗑️`);
       }
     })();
