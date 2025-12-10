@@ -3,11 +3,28 @@ import SplatzLogo from '@/assets/Splatz_Logo.png';
 import FileUpload from './FileUpload';
 import { FaGithub } from 'react-icons/fa';
 import DarkModeToggle from './ui/DarkModeToggle';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 function SplashScreen() {
 
   const [isDark, setIsDark] = useState(false);
+  const [toggleTop, setToggleTop] = useState('72px'); // default bottom-18 equivalent
+  const githubRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const updateTogglePosition = () => {
+      if (githubRef.current) {
+        const rect = githubRef.current.getBoundingClientRect();
+        const centerY = rect.top + rect.height / 2;
+        setToggleTop(`${centerY}px`);
+      }
+    };
+
+    updateTogglePosition();
+    window.addEventListener('resize', updateTogglePosition);
+
+    return () => window.removeEventListener('resize', updateTogglePosition);
+  }, []);
 
   return (
     <>
@@ -18,7 +35,10 @@ function SplashScreen() {
           alt='Splatz Logo'
         />
 
-        <div className='fixed bottom-18 right-14 z-30 pointer-events-auto'>
+        <div
+          className='fixed right-14 z-30 pointer-events-auto -translate-y-1/2'
+          style={{ top: toggleTop }}
+        >
           <DarkModeToggle
             scale={1}
             isDark = {isDark}
@@ -34,7 +54,10 @@ function SplashScreen() {
           href= 'https://github.com/AlfredoChavez/Splatz'
           className='pointer-events-auto shrink-0'
         >
-          <div className='h-8 md:h-10 w-auto hover:scale-125 transition-transform duration-300'>
+          <div
+            ref={githubRef}
+            className='h-full w-auto hover:scale-125 transition-transform duration-300'
+          >
             <FaGithub size={50} className='stroke-10 stroke-gray-300 fill-[#dfeaeb] dark:fill-white dark:stroke-0'/>
           </div>
         </a>
