@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useRef, useMemo} from 'react';
 import {Canvas} from '@react-three/fiber';
 import { Progress } from './ui/Progress';
 import { useLocation } from 'react-router';
@@ -7,6 +7,7 @@ import Dock from './ui/Dock';
 import { FaHome, FaKeyboard } from 'react-icons/fa';
 import { useNavigate } from 'react-router';
 import Instructions from './ui/Instructions/Instructions';
+import Joystick from './Joystick';
 
 function SparkComponent() {
   //* I need to keep track of the loading progress with these states
@@ -18,6 +19,14 @@ function SparkComponent() {
 
   const location = useLocation();
   const navigate = useNavigate();
+
+  // Create a ref for joystick movement to pass down to the scene
+  const joystickRef = useRef({ x: 0, y: 0 });
+  const isTouchDevice = useMemo(() => 'ontouchstart' in window || navigator.maxTouchPoints > 0, []);
+
+  const handleJoystickMove = (pos: { x: number; y: number }) => {
+    joystickRef.current = pos;
+  };
 
   //* Redirect to splash screen if no file data is available (e.g., direct navigation or page reload)
   useEffect(() => {
@@ -91,6 +100,9 @@ function SparkComponent() {
                 <span className='font-bold'>Alfredo Chavez</span>, 2025
               </p>
             </div>
+            {isTouchDevice &&
+              <Joystick onMove={handleJoystickMove} />
+            }
           </>
         }
         <Canvas
@@ -108,6 +120,7 @@ function SparkComponent() {
             setLoading = {setLoading}
             setProgress = {setProgress}
             setSplatCenter={setSplatCenter}
+            joystickRef={joystickRef}
           />
         </Canvas>
       </div>

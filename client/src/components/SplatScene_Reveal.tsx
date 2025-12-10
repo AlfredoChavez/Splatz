@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from 'react';
+import {useEffect, useRef, useState, useMemo} from 'react';
 import {useFrame, useThree} from '@react-three/fiber';
 import {SplatMesh, FpsMovement, PointerControls, SplatLoader, dyno} from '@sparkjsdev/spark';
 import * as THREE from 'three';
@@ -10,9 +10,10 @@ type SplatSceneProps = {
   setProgress: React.Dispatch<React.SetStateAction<number>>
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
   setSplatCenter: React.Dispatch<React.SetStateAction<{ x: number; y: number; z: number }>>
+  joystickRef?: { current: { x: number; y: number } }
 };
 
-function SplatScene_Reveal({splatURL, setLoading, setProgress, setSplatCenter}: SplatSceneProps) {
+function SplatScene_Reveal({splatURL, setLoading, setProgress, setSplatCenter, joystickRef}: SplatSceneProps) {
 
   //* I need a reference to the splat so I keep the splat constant between frames
   const splatRef = useRef <SplatMesh | null> (null);
@@ -45,7 +46,7 @@ function SplatScene_Reveal({splatURL, setLoading, setProgress, setSplatCenter}: 
                 vec3 noise(vec3 p) {
                   vec3 i = floor(p);
                   vec3 f = fract(p);
-                  f = f * f * (3.0 - 2.0 * f);
+                  f = f * f * (3.0 - 2.0 - f);
                   vec3 n000 = hash(i + vec3(0,0,0));
                   vec3 n100 = hash(i + vec3(1,0,0));
                   vec3 n010 = hash(i + vec3(0,1,0));
@@ -135,7 +136,8 @@ function SplatScene_Reveal({splatURL, setLoading, setProgress, setSplatCenter}: 
         setLoading(false);
         setProgress(0);
         URL.revokeObjectURL(splatURL);
-        console.log(`Revoked temporary URL: ${splatURL} 🗑️`);
+        //! Only log this in development
+        // console.log(`Revoked temporary URL: ${splatURL} 🗑️`);
       }
     })();
 
@@ -154,6 +156,59 @@ function SplatScene_Reveal({splatURL, setLoading, setProgress, setSplatCenter}: 
   //* In TS I have to make sure to type things properly as it does not allow me to simply add a null to a type that is not supposed to be null
   const fpsMovementRef = useRef <FpsMovement | null> (null);
   const pointerControlsRef = useRef <PointerControls | null> (null);
+
+  // Touch control logic
+  const isTouchDevice = useMemo(() => 'ontouchstart' in window || navigator.maxTouchPoints > 0, []);
+
+  // Touch Look Logic inside the scene
+  useEffect(() => {
+    if (!isTouchDevice) return;
+
+    const canvas = gl.domElement;
+    let lastTouchX = 0;
+    let lastTouchY = 0;
+
+    const onTouchStart = (e: TouchEvent) => {
+      // If we touch the canvas, we are "looking".
+      if (e.touches.length > 0) {
+        lastTouchX = e.touches[0].clientX;
+        lastTouchY = e.touches[0].clientY;
+      }
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (e.touches.length === 0) return;
+
+      const touchReceived = e.touches[0];
+
+      const deltaX = touchReceived.clientX - lastTouchX;
+      const deltaY = touchReceived.clientY - lastTouchY;
+
+      lastTouchX = touchReceived.clientX;
+      lastTouchY = touchReceived.clientY;
+
+      const sensitivity = 0.005;
+
+      // Yaw (left/right) - Rotate around world Y
+      camera.rotation.y -= deltaX * sensitivity;
+
+      // Pitch (up/down) - Rotate around local X, clamped?
+      camera.rotation.x -= deltaY * sensitivity;
+
+      // Clamp pitch to avoid flipping
+      camera.rotation.x = Math.max(-Math.PI / 2 + 0.1, Math.min(Math.PI / 2 - 0.1, camera.rotation.x));
+
+      camera.updateProjectionMatrix();
+    };
+
+    canvas.addEventListener('touchstart', onTouchStart, { passive: false });
+    canvas.addEventListener('touchmove', onTouchMove, { passive: false });
+
+    return () => {
+      canvas.removeEventListener('touchstart', onTouchStart);
+      canvas.removeEventListener('touchmove', onTouchMove);
+    };
+  }, [gl.domElement, camera, isTouchDevice]);
 
   //* If we have a renderer, we have to set up the controls
   useEffect(()=>{
@@ -186,6 +241,28 @@ function SplatScene_Reveal({splatURL, setLoading, setProgress, setSplatCenter}: 
   useFrame((_, delta) => {
     if(fpsMovementRef.current) fpsMovementRef.current.update(delta, camera);
     if(pointerControlsRef.current) pointerControlsRef.current.update(delta, camera);
+
+    // Apply Joystick Movement from ref
+    if (isTouchDevice && joystickRef && (joystickRef.current.x !== 0 || joystickRef.current.y !== 0)) {
+      const speed = 5.0 * delta; // Adjust speed as necessary
+      const forward = new THREE.Vector3(0, 0, -1).applyQuaternion(camera.quaternion);
+      const right = new THREE.Vector3(1, 0, 0).applyQuaternion(camera.quaternion);
+
+      // Flatten vectors to XZ plane for "walking" behavior
+      forward.y = 0;
+      forward.normalize();
+      right.y = 0;
+      right.normalize();
+
+      const moveZ = joystickRef.current.y; // Negative when up (from joystick)
+      const moveX = joystickRef.current.x; // Positive when right
+
+      // Move forward magnitude based on joystick Y (inverted logic: Up(neg) -> Forward)
+      camera.position.addScaledVector(forward, -moveZ * speed);
+
+      // Move right magnitude based on joystick X
+      camera.position.addScaledVector(right, moveX * speed);
+    }
 
     if(splatLoaded && splatRef.current) {
       baseTime.current += delta;
