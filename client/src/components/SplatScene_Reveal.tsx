@@ -46,7 +46,7 @@ function SplatScene_Reveal({splatURL, setLoading, setProgress, setSplatCenter, j
                 vec3 noise(vec3 p) {
                   vec3 i = floor(p);
                   vec3 f = fract(p);
-                  f = f * f * (3.0 - 2.0 - f);
+                  f = f * f * (3.0 - 2.0 * f);
                   vec3 n000 = hash(i + vec3(0,0,0));
                   vec3 n100 = hash(i + vec3(1,0,0));
                   vec3 n010 = hash(i + vec3(0,1,0));
