@@ -9,9 +9,10 @@ type SplatSceneProps = {
   splatURL: string
   setProgress: React.Dispatch<React.SetStateAction<number>>
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  setSplatCenter: React.Dispatch<React.SetStateAction<{ x: number; y: number; z: number }>>
 };
 
-function SplatScene_Reveal({splatURL, setLoading, setProgress}: SplatSceneProps) {
+function SplatScene_Reveal({splatURL, setLoading, setProgress, setSplatCenter}: SplatSceneProps) {
 
   //* I need a reference to the splat so I keep the splat constant between frames
   const splatRef = useRef <SplatMesh | null> (null);
@@ -116,6 +117,12 @@ function SplatScene_Reveal({splatURL, setLoading, setProgress}: SplatSceneProps)
         scene.add(splatMesh);
         splatRef.current = splatMesh;
 
+        //* Calculate splat bounding box center
+        const bbox = splatMesh.getBoundingBox(true);
+        const center = bbox.getCenter(new THREE.Vector3());
+        setSplatCenter(center);
+        console.log('Splat center 🎯:', center);
+
         setSplatLoaded(true);
         baseTime.current = 0;
         setupMagicEffect(splatMesh);
@@ -142,7 +149,7 @@ function SplatScene_Reveal({splatURL, setLoading, setProgress}: SplatSceneProps)
       }
       setSplatLoaded(false);
     };
-  }, [splatURL, scene, setLoading, setProgress, navigate]);
+  }, [splatURL, scene, setLoading, setProgress, navigate, setSplatCenter]);
 
   //* In TS I have to make sure to type things properly as it does not allow me to simply add a null to a type that is not supposed to be null
   const fpsMovementRef = useRef <FpsMovement | null> (null);

@@ -14,6 +14,7 @@ function SparkComponent() {
   const [loading, setLoading] = useState(true);
   const [splatURL, setSplatURL] = useState('');
   const [displayInstruction, setDisplayInstructions] = useState(false);
+  const [splatCenter, setSplatCenter] = useState({ x: 0, y: 0, z: 0 });
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -94,7 +95,7 @@ function SparkComponent() {
         }
         <Canvas
           // https://threejs.org/docs/#PerspectiveCamera
-          camera={{ position: [0, 0, 1], fov: 75, near: 0.01, far: 1000 }}
+          camera={{ position: [splatCenter.x, splatCenter.y, splatCenter.z], fov: 75, near: 0.01, far: 1000 }}
           // https://threejs.org/docs/#WebGLRenderer
           gl={{
             antialias: false,
@@ -106,6 +107,7 @@ function SparkComponent() {
             splatURL = {splatURL}
             setLoading = {setLoading}
             setProgress = {setProgress}
+            setSplatCenter={setSplatCenter}
           />
         </Canvas>
       </div>
