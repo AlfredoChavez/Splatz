@@ -28,7 +28,7 @@ function SplashScreen() {
 
   return (
     <>
-      <div className='w-full h-dvh min-h-[600px] fixed z-20 flex flex-col items-center justify-between pt-[10vh] pb-[10dvh] pointer-events-none'>
+      <div className='w-full h-svh min-h-[600px] fixed z-20 flex flex-col items-center justify-between pt-[10vh] pb-[calc(10svh+env(safe-area-inset-bottom))] pointer-events-none'>
         <img
           src={SplatzLogo}
           className='h-100 w-auto transition-transform duration-300 shrink-0 pointer-events-auto hover:animate-scale-in-out'
