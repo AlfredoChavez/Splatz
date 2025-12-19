@@ -1,6 +1,6 @@
 import {useState, useEffect, useRef, useMemo} from 'react';
 import {Canvas} from '@react-three/fiber';
-import { Progress } from './ui/Progress';
+import { Progress } from './ui/progress';
 import { useLocation } from 'react-router';
 import SplatScene_Reveal from './SplatScene_Reveal';
 import Dock from './ui/Dock';
@@ -79,7 +79,7 @@ function SparkComponent() {
               <p className='text-[#dfeaeb] text-center text-4xl font-extrabold text-balance m-2.5'>
                 {Math.round(progress)} %
               </p>
-              <div className='w-[50vw] max-w-[600px]'>
+              <div className='w-[50vw] max-w-150'>
                 <Progress value={progress} />
               </div>
             </div>
