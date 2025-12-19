@@ -13,6 +13,7 @@ Built with **React**, **Three.js**, and **React Three Fiber**, Splatz offers a l
 
 ## Features
 
+- **Touch Controls:** Added touch controls for mobile devices.
 - **Embed Anywhere:** Easily embed the 3D Splat viewer in any React project.
 - **Powered by Sparkjs.dev & React Three Fiber:** Declarative, fast, and extensible.
 - **Interactive 3D Navigation:** Pan, zoom, and rotate your splats with smooth rendering.
